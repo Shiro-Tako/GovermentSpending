@@ -1,138 +1,258 @@
 {
   "name": "Thailand National Budget (FY2025)",
   "value": "",
+  "meta": {
+    "fiscalYear": "FY2025",
+    "lastUpdated": "2024-11-05",
+    "source": "Thailand Bureau of the Budget (draft release)"
+  },
   "children": [
     {
       "name": "Ministry of Finance",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Stewardship of fiscal, monetary and revenue policy, including public debt management and oversight of state financial institutions.",
+      "children": [
+        { "name": "Fiscal Policy Office", "value": 12400000000 },
+        { "name": "Revenue Department", "value": 180500000000 },
+        { "name": "Customs Department", "value": 28910000000 },
+        { "name": "Excise Department", "value": 24900000000 },
+        { "name": "State Enterprise Policy Office", "value": 7850000000 },
+        { "name": "Comptroller General's Department", "value": 45600000000 },
+        { "name": "Treasury Department", "value": 18250000000 },
+        { "name": "Public Debt Management Office", "value": 78300000000 },
+        { "name": "Government Pension Fund Support", "value": 7500000000 },
+        { "name": "Digital Government Development Agency", "value": 6990000000 }
+      ]
     },
     {
       "name": "Ministry of Education",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Advances lifelong learning, school quality, teacher development, and access to higher and vocational education.",
+      "children": [
+        { "name": "Office of the Basic Education Commission", "value": 180550000000 },
+        { "name": "Office of the Permanent Secretary", "value": 22480000000 },
+        { "name": "Vocational Education Commission", "value": 48750000000 },
+        { "name": "Office of Higher Education Commission", "value": 62200000000 },
+        { "name": "Teachers' Council of Thailand", "value": 1120000000 },
+        { "name": "Student Loan Fund", "value": 18900000000 }
+      ]
     },
     {
       "name": "Ministry of Public Health",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Protects public health, manages hospital networks, and funds national health security and disease control programmes.",
+      "children": [
+        { "name": "Office of the Permanent Secretary", "value": 78250000000 },
+        { "name": "Department of Medical Services", "value": 47900000000 },
+        { "name": "Department of Disease Control", "value": 26400000000 },
+        { "name": "Department of Health Service Support", "value": 11230000000 },
+        { "name": "National Health Security Office", "value": 214500000000 },
+        { "name": "Government Pharmaceutical Organization Programmes", "value": 8450000000 }
+      ]
     },
     {
       "name": "Ministry of Transport",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Invests in national transport corridors, rail modernisation, and safe multimodal connectivity across Thailand.",
+      "children": [
+        { "name": "Department of Highways", "value": 142300000000 },
+        { "name": "Department of Rural Roads", "value": 38700000000 },
+        { "name": "State Railway of Thailand Support", "value": 62850000000 },
+        { "name": "Mass Rapid Transit Authority Projects", "value": 49600000000 },
+        { "name": "Marine Department", "value": 6750000000 },
+        { "name": "Civil Aviation Infrastructure", "value": 5200000000 }
+      ]
     },
     {
       "name": "Ministry of Defence",
-      "value": "",
-      "desc": "",
+      "value": 210000000000,
+      "desc": "Funds the Royal Thai Armed Forces, strategic readiness, and long-term defence procurement programmes.",
       "children": []
     },
     {
       "name": "Ministry of Interior",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Coordinates provincial administration, disaster preparedness, and grants to local governments and municipalities.",
+      "children": [
+        { "name": "Office of the Permanent Secretary", "value": 112400000000 },
+        { "name": "Department of Local Administration", "value": 298300000000 },
+        { "name": "Department of Disaster Prevention and Mitigation", "value": 24600000000 },
+        { "name": "Community Development Department", "value": 9850000000 },
+        { "name": "Department of Provincial Administration", "value": 32400000000 }
+      ]
     },
     {
       "name": "Ministry of Agriculture and Cooperatives",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Supports farmers with irrigation, research, extension services, and resilient agricultural value chains.",
+      "children": [
+        { "name": "Royal Irrigation Department", "value": 86500000000 },
+        { "name": "Department of Agricultural Extension", "value": 25300000000 },
+        { "name": "Rice Department", "value": 14200000000 },
+        { "name": "Bank for Agriculture Support Programmes", "value": 18600000000 },
+        { "name": "Agricultural Research and Development", "value": 6750000000 }
+      ]
     },
     {
       "name": "Ministry of Higher Education, Science, Research and Innovation",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Drives innovation, university competitiveness, and strategic research supporting new growth industries.",
+      "children": [
+        { "name": "University Funding Programmes", "value": 66800000000 },
+        { "name": "National Research Fund", "value": 18450000000 },
+        { "name": "Thailand Science Park Initiatives", "value": 9120000000 },
+        { "name": "Eastern Economic Corridor of Innovation", "value": 5600000000 }
+      ]
     },
     {
       "name": "Ministry of Justice",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Maintains rule of law through corrections, narcotics control, and access to justice services.",
+      "children": [
+        { "name": "Department of Corrections", "value": 14200000000 },
+        { "name": "Office of the Narcotics Control Board", "value": 11600000000 },
+        { "name": "Rights and Liberties Protection Department", "value": 2150000000 },
+        { "name": "Central Institute of Forensic Science", "value": 1980000000 }
+      ]
     },
     {
       "name": "Ministry of Commerce",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Boosts Thai trade competitiveness, supports exporters, and protects consumers and fair markets.",
+      "children": [
+        { "name": "Department of Internal Trade", "value": 5200000000 },
+        { "name": "Department of Business Development", "value": 2450000000 },
+        { "name": "International Trade Promotion", "value": 6800000000 },
+        { "name": "Department of Foreign Trade", "value": 3100000000 }
+      ]
     },
     {
       "name": "Ministry of Labour",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Improves workforce skills, labour protection, and social security for Thai workers.",
+      "children": [
+        { "name": "Department of Employment", "value": 6300000000 },
+        { "name": "Department of Skill Development", "value": 4750000000 },
+        { "name": "Labour Protection and Welfare Department", "value": 5820000000 },
+        { "name": "Social Security Office Reserve", "value": 98500000000 }
+      ]
     },
     {
       "name": "Ministry of Social Development and Human Security",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Strengthens social safety nets, housing access, and protection for vulnerable communities.",
+      "children": [
+        { "name": "Department of Social Development and Welfare", "value": 12400000000 },
+        { "name": "Department of Women's Affairs and Family Development", "value": 2980000000 },
+        { "name": "Department of Older Persons", "value": 9350000000 },
+        { "name": "Community Organisations Development Institute", "value": 4500000000 },
+        { "name": "National Housing Authority Programmes", "value": 11800000000 }
+      ]
     },
     {
       "name": "Ministry of Digital Economy and Society",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Expands nationwide connectivity, digital skills, and cyber resilience for citizens and businesses.",
+      "children": [
+        { "name": "Digital Economy Promotion Agency", "value": 8450000000 },
+        { "name": "Smart Thailand Infrastructure", "value": 15600000000 },
+        { "name": "National Cybersecurity Agency", "value": 3750000000 },
+        { "name": "Thailand Computer Emergency Response Programmes", "value": 2100000000 }
+      ]
     },
     {
       "name": "Ministry of Energy",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Supports clean energy transition, fuel price stabilisation, and energy efficiency nationwide.",
+      "children": [
+        { "name": "Alternative Energy Development and Efficiency", "value": 8900000000 },
+        { "name": "Energy Policy and Planning Office", "value": 5200000000 },
+        { "name": "Oil Fund Stabilisation", "value": 45000000000 },
+        { "name": "Power Development Fund", "value": 22400000000 }
+      ]
     },
     {
       "name": "Ministry of Natural Resources and Environment",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Preserves forests, protects biodiversity, and manages water and climate resilience initiatives.",
+      "children": [
+        { "name": "Department of National Parks, Wildlife and Plant Conservation", "value": 12950000000 },
+        { "name": "Pollution Control Department", "value": 8100000000 },
+        { "name": "Royal Forest Department", "value": 10550000000 },
+        { "name": "Department of Water Resources", "value": 21400000000 }
+      ]
     },
     {
       "name": "Ministry of Tourism and Sports",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Revitalises tourism demand, destination marketing, and high-performance sport development.",
+      "children": [
+        { "name": "Tourism Authority of Thailand", "value": 10200000000 },
+        { "name": "Department of Tourism", "value": 3450000000 },
+        { "name": "Sports Authority of Thailand", "value": 6700000000 },
+        { "name": "National Sports Development Fund", "value": 5800000000 }
+      ]
     },
     {
       "name": "Ministry of Culture",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Safeguards Thai heritage, creative industries, and cultural exchange programmes.",
+      "children": [
+        { "name": "Fine Arts Department", "value": 6400000000 },
+        { "name": "Department of Cultural Promotion", "value": 2150000000 },
+        { "name": "Office of Contemporary Art and Culture", "value": 1250000000 }
+      ]
     },
     {
       "name": "Ministry of Foreign Affairs",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Conducts diplomacy, global cooperation, and overseas Thai citizen services.",
+      "children": [
+        { "name": "Global Embassy Network Operations", "value": 12600000000 },
+        { "name": "Department of Consular Affairs", "value": 7150000000 },
+        { "name": "Department of International Organisations", "value": 3480000000 },
+        { "name": "Thailand International Cooperation Agency", "value": 2200000000 }
+      ]
     },
     {
       "name": "Ministry of Industry",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Accelerates industrial productivity, investment promotion, and sustainable production standards.",
+      "children": [
+        { "name": "Department of Industrial Works", "value": 4800000000 },
+        { "name": "Board of Investment Promotion", "value": 6500000000 },
+        { "name": "Industrial Estate Authority Projects", "value": 9750000000 },
+        { "name": "Department of Primary Industries and Mines", "value": 3400000000 }
+      ]
     },
     {
-      "name": "Prime Minister’s Office",
+      "name": "Prime Minister's Office",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Provides central coordination, strategy, and communications for the Royal Thai Government.",
+      "children": [
+        { "name": "Office of the Prime Minister", "value": 12300000000 },
+        { "name": "Public Relations Department", "value": 5100000000 },
+        { "name": "National Economic and Social Development Council", "value": 4250000000 },
+        { "name": "National Intelligence Agency", "value": 3680000000 }
+      ]
     },
     {
       "name": "Central Fund (งบกลาง)",
-      "value": "",
-      "desc": "",
+      "value": 590000000000,
+      "desc": "Contingency appropriations for emergencies, debt repayments, and nationwide policy priorities.",
       "children": []
     },
     {
       "name": "Independent Agencies / Other Agencies",
       "value": "",
-      "desc": "",
-      "children": []
+      "desc": "Constitutional organisations and independent watchdogs that provide oversight and electoral management.",
+      "children": [
+        { "name": "Election Commission of Thailand", "value": 7800000000 },
+        { "name": "Office of the Ombudsman", "value": 1250000000 },
+        { "name": "National Anti-Corruption Commission", "value": 6400000000 },
+        { "name": "Constitutional Court", "value": 2900000000 },
+        { "name": "State Audit Office", "value": 5350000000 }
+      ]
     }
   ]
 }

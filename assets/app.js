@@ -5,7 +5,17 @@ let currentRoot = null;     // current view root
 let currentPath = [];       // path array from original root
 const stack = [];           // navigation stack
 
+const summaryEls = {
+  total: document.getElementById('totalBudget'),
+  ministries: document.getElementById('ministryCount'),
+  programs: document.getElementById('programCount'),
+  updated: document.getElementById('datasetUpdated'),
+  source: document.getElementById('datasetSource'),
+  fiscal: document.getElementById('fyLabel')
+};
+
 const THB = n => new Intl.NumberFormat('en-US').format(n);
+const compactTHB = n => '฿' + new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 2 }).format(n);
 const pct = (num, den) => (den && num != null) ? ((num/den)*100).toFixed(2) + '%' : '—';
 
 function sanitize(node){
@@ -30,7 +40,28 @@ function render(root, pathArr){
   currentPath = pathArr || [root.name];
   const total = computeTotal(root);
   chart.setOption({
-    backgroundColor: '#0b0e12',
+    backgroundColor: 'rgba(0,0,0,0)',
+    tooltip: {
+      trigger: 'item',
+      triggerOn: 'mousemove',
+      confine: true,
+      backgroundColor: 'rgba(15,23,42,0.92)',
+      borderColor: 'rgba(148,163,184,0.25)',
+      borderWidth: 1,
+      textStyle: { color: '#e2e8f0', fontSize: 12, lineHeight: 18 },
+      formatter: function(params){
+        const node = params.data;
+        const amount = computeTotal(node);
+        const path = (params.treePathInfo || []).map(x => x.name).join(' / ');
+        const parent = params.treeAncestors && params.treeAncestors.length > 1 ? params.treeAncestors[1] : root;
+        const share = pct(amount, computeTotal(parent));
+        return `
+          <div style='font-weight:600;margin-bottom:4px;'>${path}</div>
+          <div style='opacity:0.8;'>${amount != null ? '฿' + THB(amount) : 'Not specified'}</div>
+          <div style='font-size:11px;opacity:0.65;'>Share of parent: ${share}</div>
+        `;
+      }
+    },
     series: [{
       type: 'tree',
       data: [root],
@@ -45,12 +76,17 @@ function render(root, pathArr){
       roam: true,
       initialTreeDepth: 2,
       animationDurationUpdate: 400,
-      lineStyle: { color: '#263445' },
+      lineStyle: { color: 'rgba(148, 163, 184, 0.28)' },
+      itemStyle: {
+        color: '#38bdf8',
+        borderColor: 'rgba(148,163,184,0.35)',
+        borderWidth: 1.2
+      },
       label: {
         position: 'right',
         verticalAlign: 'middle',
         align: 'left',
-        color: '#d1d5db',
+        color: '#f1f5f9',
         fontSize: 12,
         formatter: function(params){
           const n = params.data;
@@ -58,7 +94,7 @@ function render(root, pathArr){
           const parent = params.treeAncestors && params.treeAncestors.length > 1 ? params.treeAncestors[1] : root;
           const pTotal = computeTotal(parent);
           const share = pct(pv, pTotal);
-          return n.name + (pv ? ' • ' + THB(pv) + ' (' + share + ')' : '');
+          return n.name + (pv ? ' • ' + compactTHB(pv) + ' (' + share + ')' : '');
         }
       },
       emphasis: { focus: 'descendant' }
@@ -68,11 +104,50 @@ function render(root, pathArr){
   document.getElementById('backBtn').disabled = stack.length === 0;
 }
 
+function countPrograms(node){
+  if (!node.children || !node.children.length) return 1;
+  let total = 0;
+  for (const child of node.children){
+    total += countPrograms(child);
+  }
+  return total;
+}
+
+function updateSummaryCards(root){
+  if (!root || !summaryEls.total) return;
+  const total = computeTotal(root);
+  const ministries = Array.isArray(root.children) ? root.children.length : 0;
+  let programs = 0;
+  if (root.children){
+    for (const child of root.children){
+      programs += countPrograms(child);
+    }
+  }
+
+  summaryEls.total.textContent = total != null ? compactTHB(total) : '—';
+  if (total != null) summaryEls.total.setAttribute('title', '฿' + THB(total));
+  else summaryEls.total.removeAttribute('title');
+  summaryEls.ministries.textContent = ministries ? THB(ministries) : (ministries === 0 ? '0' : '—');
+  summaryEls.programs.textContent = programs ? THB(programs) : (programs === 0 ? '0' : '—');
+
+  const meta = root.meta || {};
+  if (summaryEls.updated) summaryEls.updated.textContent = meta.lastUpdated || 'Not provided';
+  if (summaryEls.source) summaryEls.source.textContent = meta.source || 'Thailand Bureau of the Budget';
+  if (summaryEls.fiscal) summaryEls.fiscal.textContent = meta.fiscalYear || (root.name || 'Dataset');
+}
+
+function applyData(data){
+  originalData = sanitize(data);
+  stack.length = 0;
+  render(originalData, [originalData.name]);
+  updateSummaryCards(originalData);
+}
+
 function updateDetails(node, pathArr, total, parentTotal){
   const pathStr = '/' + pathArr.join('/');
   const nodeTotal = computeTotal(node);
   document.getElementById('nodeTitle').textContent = 'Center: ' + node.name;
-  document.getElementById('nodeTotal').textContent = nodeTotal != null ? THB(nodeTotal) + ' THB' : '—';
+  document.getElementById('nodeTotal').textContent = nodeTotal != null ? '฿' + THB(nodeTotal) : '—';
   document.getElementById('nodeShare').textContent = parentTotal ? pct(nodeTotal, parentTotal) : '—';
   document.getElementById('nodePath').textContent = pathStr;
   document.getElementById('nodeDesc').textContent = node.desc || '—';
@@ -110,7 +185,7 @@ document.getElementById('resetBtn').onclick = () => {
   if (originalData){ stack.length = 0; render(originalData, [originalData.name]); }
 };
 document.getElementById('dlPngBtn').onclick = () => {
-  const url = chart.getDataURL({ pixelRatio: 2, backgroundColor: '#0b0e12' });
+  const url = chart.getDataURL({ pixelRatio: 2, backgroundColor: '#0f172a' });
   const a = document.createElement('a');
   a.href = url;
   a.download = 'th_budget_mindmap.png';
@@ -169,13 +244,17 @@ async function loadDefault(){
   try {
     const res = await fetch('data/th_budget_FY2025.json', { cache: 'no-store' });
     const json = await res.json();
-    originalData = sanitize(json);
-    render(originalData, [originalData.name]);
+    applyData(json);
   } catch (e){
     console.warn('Failed to load default JSON, using demo set:', e);
     const demo = {
       name: 'Thailand National Budget (FY2025)',
       value: 0,
+      meta: {
+        fiscalYear: 'FY2025',
+        lastUpdated: 'Draft dataset',
+        source: 'Demo data generated in-app'
+      },
       children: [
         { name: 'Ministry of Finance', value: 0, children: [
           { name: 'Customs Department', value: 0 },
@@ -186,8 +265,7 @@ async function loadDefault(){
         { name: 'Central Fund (งบกลาง)', value: 0, children: []}
       ]
     };
-    originalData = sanitize(demo);
-    render(originalData, [originalData.name]);
+    applyData(demo);
   }
 }
 
@@ -198,9 +276,7 @@ document.getElementById('fileInput').addEventListener('change', (e) => {
   reader.onload = (ev) => {
     try{
       const parsed = JSON.parse(ev.target.result);
-      originalData = sanitize(parsed);
-      stack.length = 0;
-      render(originalData, [originalData.name]);
+      applyData(parsed);
     } catch(err){
       alert('Invalid JSON: ' + err.message);
     }
