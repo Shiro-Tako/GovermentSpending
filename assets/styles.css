@@ -279,6 +279,26 @@ body {
   box-shadow: 0 10px 24px rgba(2, 6, 23, 0.35);
 }
 
+.note-words {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.note-word {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.55);
+  color: #e0f2fe;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
 .note time {
   display: block;
   color: #93c5fd;
