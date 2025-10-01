@@ -5,52 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thailand Budget Mind Map</title>
   <link rel="stylesheet" href="assets/styles.css" />
-  <!-- ECharts CDN (allowed external) -->
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 </head>
 <body>
-  <header class="topbar">
-    <h1>Thailand Budget Mind Map</h1>
-    <div class="controls">
-      <input type="file" id="fileInput" accept=".json" class="btn" title="Load a custom JSON" />
-      <button id="backBtn" class="btn" disabled>← Back</button>
-      <button id="resetBtn" class="btn">Reset</button>
-      <button id="dlPngBtn" class="btn">Download PNG</button>
-      <a class="btn" href="data/th_budget_FY2025.json" download>Download Data JSON</a>
-      <a class="btn" href="README.md" target="_blank">README</a>
-    </div>
-  </header>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <h1>Thailand Budget Explorer</h1>
+        <p class="tagline">Interactive FY2025 government spending mind map with quick insights.</p>
+      </div>
+      <div class="actions">
+        <label class="btn file-btn">
+          <input type="file" id="fileInput" accept=".json" />
+          <span>Load JSON</span>
+        </label>
+        <button id="backBtn" class="btn" disabled>← Back</button>
+        <button id="resetBtn" class="btn">Reset</button>
+        <button id="dlPngBtn" class="btn">Download PNG</button>
+        <a class="btn" href="data/th_budget_FY2025.json" download>Download Data</a>
+        <a class="btn ghost" href="README.md" target="_blank">Open README</a>
+      </div>
+    </header>
 
-  <main class="layout">
-    <div id="chart"></div>
-    <aside class="sidebar">
-      <div id="nodeHeader">
-        <p class="title" id="nodeTitle">Center: —</p>
-        <div class="stat"><span class="k">Total:</span> <span id="nodeTotal">—</span></div>
-        <div class="stat"><span class="k">Share of parent:</span> <span id="nodeShare">—</span></div>
-        <div class="stat"><span class="k">Path:</span> <code class="small" id="nodePath">/</code></div>
-      </div>
-      <div class="divider"></div>
-      <div>
-        <div class="stat"><span class="k">Description</span></div>
-        <div class="desc" id="nodeDesc">Add optional "desc" in your JSON to show details for this ministry.</div>
-      </div>
-      <div class="divider"></div>
-      <div class="notesHeader">
-        <div class="stat"><span class="k">Messages</span> <span class="muted">(saved per-ministry)</span></div>
-        <div class="row">
-          <button id="exportNodeNotes" class="btn">Export</button>
-          <button id="clearNodeNotes" class="btn">Clear</button>
-        </div>
-      </div>
-      <div class="notes" id="notesList"></div>
-      <div class="noteInput">
-        <textarea id="noteText" placeholder="Write a message about this ministry… (saved only on this device)"></textarea>
-        <button id="addNoteBtn" class="btn">Add</button>
-      </div>
-      <p class="muted">Notes are stored in your browser <code class="small">localStorage</code> and are not uploaded anywhere.</p>
-    </aside>
-  </main>
+    <section class="overview" aria-live="polite">
+      <article class="stat-card">
+        <span class="label">Total Budget</span>
+        <span class="value" id="summaryTotal">—</span>
+      </article>
+      <article class="stat-card">
+        <span class="label">Ministries</span>
+        <span class="value" id="summaryMinistries">—</span>
+      </article>
+      <article class="stat-card">
+        <span class="label">All Nodes</span>
+        <span class="value" id="summaryNodes">—</span>
+      </article>
+      <article class="stat-card">
+        <span class="label">Last Updated</span>
+        <span class="value" id="summaryUpdated">Auto</span>
+      </article>
+    </section>
+
+    <main class="layout">
+      <div id="chart" role="img" aria-label="Budget mind map visualization"></div>
+      <aside class="sidebar" aria-live="polite">
+        <section class="panel">
+          <div class="panel-header">
+            <p class="title" id="nodeTitle">Center: —</p>
+            <p class="subtitle" id="nodePath">/</p>
+          </div>
+          <div class="panel-stats">
+            <div class="stat"><span class="k">Total Allocation</span><span id="nodeTotal">—</span></div>
+            <div class="stat"><span class="k">Share of Parent</span><span id="nodeShare">—</span></div>
+          </div>
+          <div class="divider"></div>
+          <div class="panel-section">
+            <h2>Description</h2>
+            <p class="desc" id="nodeDesc">Add optional "desc" in your JSON to show details for this ministry.</p>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header space-between">
+            <div>
+              <h2>Messages</h2>
+              <p class="muted">Saved per ministry in your browser.</p>
+            </div>
+            <div class="row">
+              <button id="exportNodeNotes" class="btn ghost">Export</button>
+              <button id="clearNodeNotes" class="btn ghost">Clear</button>
+            </div>
+          </div>
+          <div class="notes" id="notesList"></div>
+          <div class="noteInput">
+            <textarea id="noteText" placeholder="Write a message about this ministry…"></textarea>
+            <button id="addNoteBtn" class="btn primary">Add</button>
+          </div>
+          <p class="muted smallprint">Notes stay on this device via <code class="small">localStorage</code>.</p>
+        </section>
+      </aside>
+    </main>
+  </div>
 
   <script src="assets/app.js"></script>
 </body>

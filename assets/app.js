@@ -5,11 +5,21 @@ let currentRoot = null;     // current view root
 let currentPath = [];       // path array from original root
 const stack = [];           // navigation stack
 
+const summaryEls = {
+  total: document.getElementById('summaryTotal'),
+  ministries: document.getElementById('summaryMinistries'),
+  nodes: document.getElementById('summaryNodes'),
+  updated: document.getElementById('summaryUpdated'),
+};
+
 const THB = n => new Intl.NumberFormat('en-US').format(n);
 const pct = (num, den) => (den && num != null) ? ((num/den)*100).toFixed(2) + '%' : '—';
+const formatUpdated = (source) => new Intl.DateTimeFormat('en-GB', {
+  dateStyle: 'medium',
+  timeStyle: 'short'
+}).format(source ?? new Date());
 
 function sanitize(node){
-  // Coerce value to number, allow desc, ensure children array
   const v = node.value;
   if (v === '' || v === null || v === undefined) node.value = null;
   else node.value = Number(v);
@@ -24,13 +34,30 @@ function sumChildren(node){
   return node.children.reduce((s, c) => s + (c.value ?? sumChildren(c)), 0);
 }
 function computeTotal(node){ return node.value ?? sumChildren(node); }
+function countNodes(node){
+  if (!node) return 0;
+  const children = Array.isArray(node.children) ? node.children : [];
+  return 1 + children.reduce((acc, child) => acc + countNodes(child), 0);
+}
+
+function updateOverview(){
+  if (!originalData) return;
+  const total = computeTotal(originalData);
+  summaryEls.total.textContent = total != null ? THB(total) + ' THB' : '—';
+  summaryEls.ministries.textContent = originalData.children ? originalData.children.length : 0;
+  summaryEls.nodes.textContent = countNodes(originalData);
+}
+
+function setOverviewUpdated(label){
+  summaryEls.updated.textContent = label;
+}
 
 function render(root, pathArr){
   currentRoot = root;
   currentPath = pathArr || [root.name];
   const total = computeTotal(root);
   chart.setOption({
-    backgroundColor: '#0b0e12',
+    backgroundColor: 'transparent',
     series: [{
       type: 'tree',
       data: [root],
@@ -45,20 +72,21 @@ function render(root, pathArr){
       roam: true,
       initialTreeDepth: 2,
       animationDurationUpdate: 400,
-      lineStyle: { color: '#263445' },
+      lineStyle: { color: 'rgba(148, 163, 184, 0.35)' },
       label: {
         position: 'right',
         verticalAlign: 'middle',
         align: 'left',
-        color: '#d1d5db',
+        color: '#e2e8f0',
         fontSize: 12,
+        fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
         formatter: function(params){
           const n = params.data;
           const pv = computeTotal(n);
           const parent = params.treeAncestors && params.treeAncestors.length > 1 ? params.treeAncestors[1] : root;
           const pTotal = computeTotal(parent);
           const share = pct(pv, pTotal);
-          return n.name + (pv ? ' • ' + THB(pv) + ' (' + share + ')' : '');
+          return n.name + (pv ? ` • ${THB(pv)} (${share})` : '');
         }
       },
       emphasis: { focus: 'descendant' }
@@ -119,7 +147,15 @@ document.getElementById('dlPngBtn').onclick = () => {
 
 // Notes utilities
 function lsKey(pathStr){ return 'thb_notes::' + pathStr; }
-function escapeHtml(s){ return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',''':'&#39;'}[m])); }
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g, m => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  }[m]));
+}
 function loadNotes(pathStr){
   const el = document.getElementById('notesList');
   el.innerHTML = '';
@@ -171,6 +207,13 @@ async function loadDefault(){
     const json = await res.json();
     originalData = sanitize(json);
     render(originalData, [originalData.name]);
+    updateOverview();
+    const lastMod = res.headers.get('last-modified');
+    if (lastMod){
+      setOverviewUpdated(new Date(lastMod).toLocaleString());
+    } else {
+      setOverviewUpdated(formatUpdated());
+    }
   } catch (e){
     console.warn('Failed to load default JSON, using demo set:', e);
     const demo = {
@@ -188,6 +231,8 @@ async function loadDefault(){
     };
     originalData = sanitize(demo);
     render(originalData, [originalData.name]);
+    updateOverview();
+    setOverviewUpdated('Demo data');
   }
 }
 
@@ -201,6 +246,8 @@ document.getElementById('fileInput').addEventListener('change', (e) => {
       originalData = sanitize(parsed);
       stack.length = 0;
       render(originalData, [originalData.name]);
+      updateOverview();
+      setOverviewUpdated('Custom upload • ' + formatUpdated());
     } catch(err){
       alert('Invalid JSON: ' + err.message);
     }
