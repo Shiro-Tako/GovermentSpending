@@ -194,7 +194,16 @@ document.getElementById('dlPngBtn').onclick = () => {
 
 // Notes utilities
 function lsKey(pathStr){ return 'thb_notes::' + pathStr; }
-function escapeHtml(s){ return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',''':'&#39;'}[m])); }
+const HTML_ESCAPES = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+};
+function escapeHtml(s){
+  return String(s ?? '').replace(/[&<>"']/g, m => HTML_ESCAPES[m]);
+}
 function loadNotes(pathStr){
   const el = document.getElementById('notesList');
   el.innerHTML = '';
