@@ -1,822 +1,138 @@
 {
   "name": "Thailand National Budget (FY2025)",
   "value": "",
-  "desc": "Indicative allocation for FY2025 expressed in million Thai Baht.",
   "children": [
     {
-      "name": "Central Fund (งบกลาง)",
-      "value": 590000,
-      "desc": "Contingencies and nationwide programmes managed directly by the central government.",
-      "children": [
-        {
-          "name": "Emergency and Contingency Reserve",
-          "value": 120000,
-          "desc": "Buffer for disasters, epidemics and unforeseen events."
-        },
-        {
-          "name": "Debt Service Reserve",
-          "value": 110000,
-          "desc": "Scheduled repayments for state borrowing obligations."
-        },
-        {
-          "name": "Compensation & Subsidy Pool",
-          "value": 165000,
-          "desc": "Support for price stabilisation, energy subsidies and targeted welfare."
-        },
-        {
-          "name": "Strategic Investment Fund",
-          "value": 95000,
-          "desc": "Matching funds for mega projects and PPP programmes."
-        },
-        {
-          "name": "Personnel and Pension Reserve",
-          "value": 100000,
-          "desc": "Severance, pensions and personnel cost adjustments."
-        }
-      ]
-    },
-    {
-      "name": "Local Government Transfers",
-      "value": 520000,
-      "desc": "Unconditional and conditional grants to provinces, municipalities and tambon administrations.",
-      "children": [
-        {
-          "name": "General Grants",
-          "value": 315000,
-          "desc": "Formula-based transfers to local governments for core services."
-        },
-        {
-          "name": "Education & Health Top-ups",
-          "value": 90000,
-          "desc": "Funding to align local schools and health centres with national standards."
-        },
-        {
-          "name": "Capital Co-investment",
-          "value": 80000,
-          "desc": "Matching funds for local infrastructure and transit upgrades."
-        },
-        {
-          "name": "Local Innovation Challenge",
-          "value": 35000,
-          "desc": "Competitive grants for smart city, tourism and climate projects."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Interior",
-      "value": 370000,
-      "desc": "Provincial administration, civil registration and disaster preparedness.",
-      "children": [
-        {
-          "name": "Department of Provincial Administration",
-          "value": 142000,
-          "desc": "Support for provincial governors, district offices and civil registries."
-        },
-        {
-          "name": "Department of Disaster Prevention and Mitigation",
-          "value": 54000,
-          "desc": "Equipment modernisation, community drills and emergency operations."
-        },
-        {
-          "name": "Department of Local Administration",
-          "value": 128000,
-          "desc": "Capacity building and oversight for local government offices."
-        },
-        {
-          "name": "Interior Digital Services",
-          "value": 46000,
-          "desc": "National ID upgrades, digital licences and data exchange."
-        }
-      ]
-    },
-    {
       "name": "Ministry of Finance",
-      "value": 355000,
-      "desc": "Fiscal policy management, revenue collection and treasury services.",
-      "children": [
-        {
-          "name": "Fiscal Policy Office",
-          "value": 38000,
-          "desc": "Macroeconomic analysis, tax reform and budget planning."
-        },
-        {
-          "name": "Revenue Department",
-          "value": 118000,
-          "desc": "Tax administration systems, compliance programmes and service centres."
-        },
-        {
-          "name": "Customs Department",
-          "value": 63000,
-          "desc": "Port automation, trade facilitation and enforcement."
-        },
-        {
-          "name": "Excise Department",
-          "value": 46000,
-          "desc": "Digital excise stamping, monitoring and revenue assurance."
-        },
-        {
-          "name": "State Enterprise Policy Office",
-          "value": 90000,
-          "desc": "Capital injections and restructuring for state-owned enterprises."
-        }
-      ]
+      "value": "",
+      "desc": "",
+      "children": []
     },
     {
       "name": "Ministry of Education",
-      "value": 338000,
-      "desc": "Basic, vocational and higher education services across the country.",
-      "children": [
-        {
-          "name": "Office of the Basic Education Commission",
-          "value": 182000,
-          "desc": "Teacher recruitment, curriculum reform and school meal support."
-        },
-        {
-          "name": "Office of the Vocational Education Commission",
-          "value": 62000,
-          "desc": "Dual training programmes and equipment upgrades."
-        },
-        {
-          "name": "Equitable Education Fund",
-          "value": 38000,
-          "desc": "Scholarships and tutoring for vulnerable learners."
-        },
-        {
-          "name": "Digital Learning Transformation",
-          "value": 56000,
-          "desc": "Learning management systems, devices and connected classrooms."
-        }
-      ]
+      "value": "",
+      "desc": "",
+      "children": []
     },
     {
       "name": "Ministry of Public Health",
-      "value": 220000,
-      "desc": "Universal health coverage, hospitals and disease prevention.",
-      "children": [
-        {
-          "name": "Universal Coverage Scheme",
-          "value": 105000,
-          "desc": "Capitation payments for 30-baht universal healthcare."
-        },
-        {
-          "name": "Regional & Community Hospitals",
-          "value": 62000,
-          "desc": "Facility upgrades, equipment and workforce expansion."
-        },
-        {
-          "name": "Disease Control Programmes",
-          "value": 24000,
-          "desc": "Vaccination, epidemiology surveillance and vector control."
-        },
-        {
-          "name": "Mental Health & Wellness",
-          "value": 17000,
-          "desc": "Community counselling, crisis helplines and wellness campaigns."
-        },
-        {
-          "name": "Medical Sciences & Labs",
-          "value": 12000,
-          "desc": "Quality assurance, national lab network and research."
-        }
-      ]
+      "value": "",
+      "desc": "",
+      "children": []
     },
     {
       "name": "Ministry of Transport",
-      "value": 210000,
-      "desc": "Rail, road, aviation and maritime connectivity investments.",
-      "children": [
-        {
-          "name": "Department of Highways",
-          "value": 72000,
-          "desc": "Road widening, bypasses and highway maintenance."
-        },
-        {
-          "name": "Rail Infrastructure Projects",
-          "value": 64000,
-          "desc": "Double-track expansion, suburban rail and signalling."
-        },
-        {
-          "name": "Mass Rapid Transit Authority",
-          "value": 41000,
-          "desc": "Bangkok Orange Line and station improvements."
-        },
-        {
-          "name": "Airports of Thailand Capital Plan",
-          "value": 18000,
-          "desc": "Runway upgrades, satellite terminals and safety systems."
-        },
-        {
-          "name": "Port and Marine Works",
-          "value": 15000,
-          "desc": "Laem Chabang expansion, coastal logistics and safety."
-        }
-      ]
+      "value": "",
+      "desc": "",
+      "children": []
     },
     {
       "name": "Ministry of Defence",
-      "value": 214000,
-      "desc": "Armed forces readiness, cyber security and veteran welfare.",
-      "children": [
-        {
-          "name": "Royal Thai Army",
-          "value": 108000,
-          "desc": "Force modernisation, training and border security."
-        },
-        {
-          "name": "Royal Thai Navy",
-          "value": 43000,
-          "desc": "Fleet maintenance, coastal patrol and submarine programme."
-        },
-        {
-          "name": "Royal Thai Air Force",
-          "value": 36000,
-          "desc": "Aircraft upgrades, UAV systems and pilot training."
-        },
-        {
-          "name": "Defence Technology Institute",
-          "value": 14000,
-          "desc": "Local defence R&D and industry partnerships."
-        },
-        {
-          "name": "Veteran Affairs",
-          "value": 13000,
-          "desc": "Healthcare, pensions and skills programmes for veterans."
-        }
-      ]
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Interior",
+      "value": "",
+      "desc": "",
+      "children": []
     },
     {
       "name": "Ministry of Agriculture and Cooperatives",
-      "value": 112000,
-      "desc": "Agricultural productivity, irrigation and farmer welfare.",
-      "children": [
-        {
-          "name": "Royal Irrigation Department",
-          "value": 42000,
-          "desc": "Water resource management and smart irrigation systems."
-        },
-        {
-          "name": "Department of Agricultural Extension",
-          "value": 19000,
-          "desc": "Advisory services, smart farming and cooperatives."
-        },
-        {
-          "name": "Bank for Agriculture Support",
-          "value": 21000,
-          "desc": "Low-interest credit and debt relief for farmers."
-        },
-        {
-          "name": "Food Security & Bioeconomy",
-          "value": 30000,
-          "desc": "Crop diversification, bio-based industries and food reserves."
-        }
-      ]
+      "value": "",
+      "desc": "",
+      "children": []
     },
     {
       "name": "Ministry of Higher Education, Science, Research and Innovation",
-      "value": 97000,
-      "desc": "Research ecosystem, scholarships and innovation-driven enterprises.",
-      "children": [
-        {
-          "name": "Thailand Science Research and Innovation",
-          "value": 34000,
-          "desc": "Competitive research grants and flagship missions."
-        },
-        {
-          "name": "University Block Grants",
-          "value": 28000,
-          "desc": "Performance-based funding for public universities."
-        },
-        {
-          "name": "STEM Scholarship Programmes",
-          "value": 16000,
-          "desc": "Fellowships, overseas placements and postdoc support."
-        },
-        {
-          "name": "Startup & Innovation Fund",
-          "value": 19000,
-          "desc": "Deep-tech incubation, venture matching and innovation hubs."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Labour",
-      "value": 51000,
-      "desc": "Employment services, skills development and worker protection.",
-      "children": [
-        {
-          "name": "Skill Development Department",
-          "value": 21000,
-          "desc": "Reskilling for digital, EV and green industries."
-        },
-        {
-          "name": "Employment Services",
-          "value": 13500,
-          "desc": "Job centres, migrant labour management and job-matching platforms."
-        },
-        {
-          "name": "Social Security Office",
-          "value": 16500,
-          "desc": "Unemployment benefits and workplace safety programmes."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Social Development and Human Security",
-      "value": 31000,
-      "desc": "Community welfare, child protection and inclusive services.",
-      "children": [
-        {
-          "name": "Elderly Allowance Expansion",
-          "value": 12000,
-          "desc": "Expanded living allowances and community care centres."
-        },
-        {
-          "name": "Family and Child Welfare",
-          "value": 7800,
-          "desc": "Shelters, adoption services and early childhood support."
-        },
-        {
-          "name": "Accessibility & Disability Support",
-          "value": 6200,
-          "desc": "Assistive devices, employment schemes and home modifications."
-        },
-        {
-          "name": "Gender Equality Promotion",
-          "value": 5000,
-          "desc": "Prevention of violence and empowerment programmes."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Digital Economy and Society",
-      "value": 25000,
-      "desc": "Digital infrastructure, cybersecurity and e-government services.",
-      "children": [
-        {
-          "name": "National Broadband Rollout",
-          "value": 9000,
-          "desc": "Rural fibre, community internet and satellite backhaul."
-        },
-        {
-          "name": "GovCloud & Open Data",
-          "value": 5200,
-          "desc": "Shared digital platforms and interoperability."
-        },
-        {
-          "name": "Cybersecurity Agency",
-          "value": 4800,
-          "desc": "National SOC, incident response and cyber awareness."
-        },
-        {
-          "name": "Digital Literacy & Inclusion",
-          "value": 6000,
-          "desc": "Community digital skills and device subsidies."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Natural Resources and Environment",
-      "value": 41000,
-      "desc": "Conservation, pollution management and climate resilience.",
-      "children": [
-        {
-          "name": "Forest Conservation & Restoration",
-          "value": 12500,
-          "desc": "Community forests, fire prevention and biodiversity."
-        },
-        {
-          "name": "Climate Change Adaptation",
-          "value": 9300,
-          "desc": "Flood protection, coastal resilience and carbon markets."
-        },
-        {
-          "name": "Pollution Control",
-          "value": 8800,
-          "desc": "Air quality sensors, wastewater treatment and hazardous waste."
-        },
-        {
-          "name": "National Parks & Tourism",
-          "value": 10400,
-          "desc": "Visitor facilities, park rangers and eco-tourism."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Energy",
-      "value": 16000,
-      "desc": "Energy security, renewables and pricing measures.",
-      "children": [
-        {
-          "name": "Renewable Incentive Schemes",
-          "value": 5200,
-          "desc": "Feed-in tariffs, community solar and biogas."
-        },
-        {
-          "name": "Strategic Fuel Reserve",
-          "value": 4100,
-          "desc": "Fuel stockpiles and hedging programmes."
-        },
-        {
-          "name": "Electric Mobility Promotion",
-          "value": 3800,
-          "desc": "EV subsidies, charging corridors and fleet electrification."
-        },
-        {
-          "name": "Energy Efficiency Programmes",
-          "value": 2900,
-          "desc": "Industrial retrofits, building codes and labelling."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Commerce",
-      "value": 13500,
-      "desc": "Trade facilitation, consumer protection and export promotion.",
-      "children": [
-        {
-          "name": "Department of Internal Trade",
-          "value": 4200,
-          "desc": "Price monitoring, fair competition and consumer relief."
-        },
-        {
-          "name": "International Trade Negotiations",
-          "value": 3200,
-          "desc": "FTA negotiations, trade missions and market intelligence."
-        },
-        {
-          "name": "SME Export Promotion",
-          "value": 3600,
-          "desc": "Export clinics, e-commerce onboarding and financing."
-        },
-        {
-          "name": "Intellectual Property & Standards",
-          "value": 2500,
-          "desc": "IP enforcement, certification and product standards."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Tourism and Sports",
-      "value": 10000,
-      "desc": "Tourism recovery, destination marketing and sports development.",
-      "children": [
-        {
-          "name": "Tourism Sandbox & Events",
-          "value": 3100,
-          "desc": "Signature festivals, MICE attraction and visa facilitation."
-        },
-        {
-          "name": "Destination Infrastructure",
-          "value": 2800,
-          "desc": "Community attractions, hygiene upgrades and smart signage."
-        },
-        {
-          "name": "Sports Authority of Thailand",
-          "value": 2400,
-          "desc": "Elite athlete programmes, stadium upgrades and sports science."
-        },
-        {
-          "name": "Community Sports & Wellness",
-          "value": 1700,
-          "desc": "Active lifestyle campaigns and local sport grants."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Culture",
-      "value": 8000,
-      "desc": "Cultural heritage, creative economy and soft power.",
-      "children": [
-        {
-          "name": "Creative Economy Promotion",
-          "value": 2700,
-          "desc": "Film, music and design industry support."
-        },
-        {
-          "name": "Heritage Conservation",
-          "value": 2100,
-          "desc": "Temple restoration, archives and museums."
-        },
-        {
-          "name": "Cultural Diplomacy",
-          "value": 1600,
-          "desc": "International cultural exchanges and showcases."
-        },
-        {
-          "name": "Community Arts",
-          "value": 1600,
-          "desc": "Folk arts, festivals and youth programmes."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Foreign Affairs",
-      "value": 13400,
-      "desc": "Diplomacy, overseas missions and consular services.",
-      "children": [
-        {
-          "name": "Overseas Missions",
-          "value": 6200,
-          "desc": "Embassy operations, consular upgrades and Thai communities abroad."
-        },
-        {
-          "name": "Economic Diplomacy",
-          "value": 3400,
-          "desc": "Investment promotion, ASEAN cooperation and trade facilitation."
-        },
-        {
-          "name": "International Development Cooperation",
-          "value": 2400,
-          "desc": "South-South cooperation, scholarships and humanitarian aid."
-        },
-        {
-          "name": "Citizen Services",
-          "value": 1400,
-          "desc": "Passport centres, digital services and crisis assistance."
-        }
-      ]
-    },
-    {
-      "name": "Ministry of Industry",
-      "value": 9500,
-      "desc": "Industrial policy, cluster development and SME upgrading.",
-      "children": [
-        {
-          "name": "Industrial Estate Authority",
-          "value": 3100,
-          "desc": "Eco-industrial estates, utilities and logistics."
-        },
-        {
-          "name": "SME Upgrade Programmes",
-          "value": 2400,
-          "desc": "Lean manufacturing, automation and certification."
-        },
-        {
-          "name": "New S-Curve Promotion",
-          "value": 2200,
-          "desc": "Bio, circular and green industry incentives."
-        },
-        {
-          "name": "Industrial Safety & Regulation",
-          "value": 1800,
-          "desc": "Plant inspections, digital permitting and safety labs."
-        }
-      ]
+      "value": "",
+      "desc": "",
+      "children": []
     },
     {
       "name": "Ministry of Justice",
-      "value": 26000,
-      "desc": "Legal aid, corrections reform and judicial coordination.",
-      "children": [
-        {
-          "name": "Department of Corrections",
-          "value": 9800,
-          "desc": "Facility upgrades, rehabilitation and healthcare."
-        },
-        {
-          "name": "Legal Aid & Mediation",
-          "value": 5200,
-          "desc": "Community justice centres and legal clinics."
-        },
-        {
-          "name": "Justice Data Platform",
-          "value": 3800,
-          "desc": "Integrated case management and analytics."
-        },
-        {
-          "name": "Narcotics Control Board",
-          "value": 7200,
-          "desc": "Prevention, treatment and transnational crime suppression."
-        }
-      ]
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Commerce",
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Labour",
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Social Development and Human Security",
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Digital Economy and Society",
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Energy",
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Natural Resources and Environment",
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Tourism and Sports",
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Culture",
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Foreign Affairs",
+      "value": "",
+      "desc": "",
+      "children": []
+    },
+    {
+      "name": "Ministry of Industry",
+      "value": "",
+      "desc": "",
+      "children": []
     },
     {
       "name": "Prime Minister’s Office",
-      "value": 32000,
-      "desc": "Strategic communication, government coordination and public broadcasting.",
-      "children": [
-        {
-          "name": "Government Public Relations Department",
-          "value": 8200,
-          "desc": "Nation branding, crisis communication and media monitoring."
-        },
-        {
-          "name": "Thai PBS & Digital Platforms",
-          "value": 9200,
-          "desc": "Public broadcasting, content production and digital services."
-        },
-        {
-          "name": "Cabinet Secretariat",
-          "value": 7600,
-          "desc": "Cabinet operations, policy follow-up and regulatory review."
-        },
-        {
-          "name": "Anti-Corruption & Governance",
-          "value": 7000,
-          "desc": "Integrity units, open government initiatives and audits."
-        }
-      ]
+      "value": "",
+      "desc": "",
+      "children": []
     },
     {
-      "name": "Constitutional Organizations and Independent Agencies",
-      "value": 55000,
-      "desc": "Independent oversight bodies as mandated by the constitution.",
-      "children": [
-        {
-          "name": "Election Commission",
-          "value": 14500,
-          "desc": "Electoral management, system upgrades and civic education."
-        },
-        {
-          "name": "National Anti-Corruption Commission",
-          "value": 13200,
-          "desc": "Asset disclosure, investigations and prevention."
-        },
-        {
-          "name": "Office of the Ombudsman",
-          "value": 6400,
-          "desc": "Citizen complaints handling and systemic review."
-        },
-        {
-          "name": "National Human Rights Commission",
-          "value": 5900,
-          "desc": "Monitoring, advocacy and coordination."
-        },
-        {
-          "name": "Other Independent Agencies",
-          "value": 15000,
-          "desc": "Broadcast regulator, state enterprise watchdogs and research bodies."
-        }
-      ]
+      "name": "Central Fund (งบกลาง)",
+      "value": "",
+      "desc": "",
+      "children": []
     },
     {
-      "name": "Courts of Justice",
-      "value": 25000,
-      "desc": "Judicial administration for civil, criminal and appellate courts.",
-      "children": [
-        {
-          "name": "Supreme Court & Appeals",
-          "value": 8800,
-          "desc": "Case management, digital archives and backlog reduction."
-        },
-        {
-          "name": "Provincial Courts",
-          "value": 9700,
-          "desc": "Court houses, interpreters and legal tech."
-        },
-        {
-          "name": "Juvenile & Family Courts",
-          "value": 6500,
-          "desc": "Child-friendly procedures and counselling."
-        }
-      ]
-    },
-    {
-      "name": "State Audit Office",
-      "value": 7200,
-      "desc": "External auditing of public finances and programmes.",
-      "children": [
-        {
-          "name": "Financial Audit",
-          "value": 3000,
-          "desc": "Annual statements, compliance and risk-based audits."
-        },
-        {
-          "name": "Performance Audit",
-          "value": 2100,
-          "desc": "Value-for-money reviews of major investments."
-        },
-        {
-          "name": "Digital Forensics & Analytics",
-          "value": 2100,
-          "desc": "Data-driven auditing and fraud analytics."
-        }
-      ]
-    },
-    {
-      "name": "Office of the Attorney General",
-      "value": 7800,
-      "desc": "Public prosecution, legal counsel and international cooperation.",
-      "children": [
-        {
-          "name": "Criminal Litigation",
-          "value": 3200,
-          "desc": "Case preparation, digital evidence and witness support."
-        },
-        {
-          "name": "Civil and Administrative Litigation",
-          "value": 2100,
-          "desc": "State legal defence and arbitration."
-        },
-        {
-          "name": "International Affairs",
-          "value": 1500,
-          "desc": "Mutual legal assistance, extradition and treaty work."
-        },
-        {
-          "name": "Legal Knowledge Services",
-          "value": 1000,
-          "desc": "Training, publications and community outreach."
-        }
-      ]
-    },
-    {
-      "name": "Parliament",
-      "value": 15000,
-      "desc": "National Assembly operations for the House and Senate.",
-      "children": [
-        {
-          "name": "House of Representatives",
-          "value": 7800,
-          "desc": "Legislative services, committee support and outreach."
-        },
-        {
-          "name": "Senate",
-          "value": 3800,
-          "desc": "Scrutiny, advisory roles and provincial engagement."
-        },
-        {
-          "name": "Parliamentary Services",
-          "value": 3400,
-          "desc": "Research, translation and digital parliamentary systems."
-        }
-      ]
-    },
-    {
-      "name": "Public Debt Service",
-      "value": 96000,
-      "desc": "Principal and interest obligations of public debt.",
-      "children": [
-        {
-          "name": "Domestic Debt Service",
-          "value": 62000,
-          "desc": "Principal and coupon payments for local currency bonds."
-        },
-        {
-          "name": "External Debt Service",
-          "value": 22000,
-          "desc": "Loans from multilateral and bilateral partners."
-        },
-        {
-          "name": "Debt Management Office",
-          "value": 12000,
-          "desc": "Risk management, swap operations and investor relations."
-        }
-      ]
-    },
-    {
-      "name": "Royal Agencies",
-      "value": 35000,
-      "desc": "Royal household, royal security and development projects.",
-      "children": [
-        {
-          "name": "Royal Household Bureau",
-          "value": 12500,
-          "desc": "Institutional administration and ceremonial duties."
-        },
-        {
-          "name": "Royal Security Command",
-          "value": 9600,
-          "desc": "Security operations, training and logistics."
-        },
-        {
-          "name": "Royal Development Projects",
-          "value": 12900,
-          "desc": "Sufficiency economy, rural development and scholarships."
-        }
-      ]
-    },
-    {
-      "name": "Other Central Agencies",
-      "value": 64000,
-      "desc": "Cross-government shared services and specialised agencies.",
-      "children": [
-        {
-          "name": "Digital Government Development Agency",
-          "value": 13800,
-          "desc": "Government platforms, identity systems and interoperability."
-        },
-        {
-          "name": "Thailand Professional Qualifications Institute",
-          "value": 8200,
-          "desc": "Professional standards, testing and accreditation."
-        },
-        {
-          "name": "National Statistical Office",
-          "value": 9600,
-          "desc": "Census, surveys and data infrastructure."
-        },
-        {
-          "name": "Public Sector Human Resource Office",
-          "value": 14800,
-          "desc": "Recruitment reform, performance management and upskilling."
-        },
-        {
-          "name": "Other Shared Services",
-          "value": 17600,
-          "desc": "Archives, translation, protocol and procurement hubs."
-        }
-      ]
+      "name": "Independent Agencies / Other Agencies",
+      "value": "",
+      "desc": "",
+      "children": []
     }
   ]
 }

@@ -35,11 +35,23 @@ function sanitize(node){
   return node;
 }
 
-function sumChildren(node){
-  if (!node.children) return 0;
-  return node.children.reduce((s, c) => s + (c.value ?? sumChildren(c)), 0);
+function computeTotal(node){
+  if (!node) return null;
+  if (typeof node.value === 'number' && !Number.isNaN(node.value)){
+    return node.value;
+  }
+  if (!node.children || !node.children.length) return null;
+  let sum = 0;
+  let hasValue = false;
+  for (const child of node.children){
+    const childTotal = computeTotal(child);
+    if (childTotal != null){
+      sum += childTotal;
+      hasValue = true;
+    }
+  }
+  return hasValue ? sum : null;
 }
-function computeTotal(node){ return node.value ?? sumChildren(node); }
 function countNodes(node){
   if (!node) return 0;
   const children = Array.isArray(node.children) ? node.children : [];
