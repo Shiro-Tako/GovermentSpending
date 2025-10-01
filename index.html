@@ -15,6 +15,11 @@
         <p class="tagline">Interactive FY2025 government spending mind map with quick insights.</p>
       </div>
       <div class="actions">
+        <form id="searchForm" class="search" role="search" aria-label="Find a ministry or programme">
+          <input type="search" id="nodeSearch" list="nodeOptions" placeholder="Find ministry or programme…" autocomplete="off" aria-label="Search ministries and programmes" />
+          <datalist id="nodeOptions"></datalist>
+          <button type="submit" class="btn primary">Go</button>
+        </form>
         <label class="btn file-btn">
           <input type="file" id="fileInput" accept=".json" />
           <span>Load JSON</span>
@@ -26,6 +31,7 @@
         <a class="btn ghost" href="README.md" target="_blank">Open README</a>
       </div>
     </header>
+    <p id="searchHint" class="search-hint muted smallprint" aria-live="polite">Dataset auto-loads with FY2025 figures. Use quick find to jump to a ministry.</p>
 
     <section class="overview" aria-live="polite">
       <article class="stat-card">

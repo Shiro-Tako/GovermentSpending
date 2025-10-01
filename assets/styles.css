@@ -69,6 +69,44 @@ body::before {
   align-items: center;
 }
 
+.actions .search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(30, 41, 59, 0.35);
+  backdrop-filter: blur(12px);
+}
+
+.actions .search input {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: 0.9rem;
+  width: clamp(180px, 25vw, 260px);
+  outline: none;
+}
+
+.actions .search input::placeholder {
+  color: var(--muted);
+}
+
+.actions .search button.btn {
+  padding: 8px 14px;
+  box-shadow: none;
+}
+
+.search-hint {
+  margin: 16px 4px 0;
+  text-align: right;
+}
+
+.search-hint.error {
+  color: #fda4af;
+}
+
 .btn {
   position: relative;
   display: inline-flex;
@@ -348,6 +386,27 @@ textarea:focus {
 
   .actions {
     width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .actions .search {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .actions .search input {
+    width: 100%;
+  }
+
+  .actions .search button.btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .search-hint {
+    text-align: left;
   }
 
   .noteInput {

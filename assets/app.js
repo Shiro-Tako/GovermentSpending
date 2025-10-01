@@ -12,6 +12,12 @@ const summaryEls = {
   updated: document.getElementById('summaryUpdated'),
 };
 
+const searchForm = document.getElementById('searchForm');
+const searchInput = document.getElementById('nodeSearch');
+const searchHint = document.getElementById('searchHint');
+const defaultHint = searchHint ? searchHint.textContent : '';
+let searchIndex = [];
+
 const THB = n => new Intl.NumberFormat('en-US').format(n);
 const pct = (num, den) => (den && num != null) ? ((num/den)*100).toFixed(2) + '%' : '—';
 const formatUpdated = (source) => new Intl.DateTimeFormat('en-GB', {
@@ -52,7 +58,85 @@ function setOverviewUpdated(label){
   summaryEls.updated.textContent = label;
 }
 
-function render(root, pathArr){
+function setSearchHint(message, isError){
+  if (!searchHint) return;
+  searchHint.textContent = message || defaultHint;
+  searchHint.classList.toggle('error', Boolean(isError));
+}
+
+function updateSearchIndex(){
+  if (!originalData) return;
+  searchIndex = [];
+  const datalist = document.getElementById('nodeOptions');
+  if (datalist) datalist.innerHTML = '';
+  const traverse = (node, pathArr, parentTotal) => {
+    const total = computeTotal(node);
+    const entry = {
+      name: node.name,
+      path: pathArr.slice(),
+      total,
+      parentTotal
+    };
+    searchIndex.push(entry);
+    if (datalist){
+      const option = document.createElement('option');
+      option.value = node.name;
+      option.label = total ? `${node.name} • ${THB(total)} THB` : node.name;
+      datalist.appendChild(option);
+    }
+    (node.children || []).forEach(child => traverse(child, [...pathArr, child.name], total));
+  };
+  traverse(originalData, [originalData.name], null);
+  setSearchHint(defaultHint, false);
+}
+
+function focusByPath(pathArr, parentTotal){
+  if (!originalData || !Array.isArray(pathArr) || !pathArr.length) return false;
+  const rootName = originalData.name;
+  const resolvedPath = pathArr[0] === rootName ? pathArr.slice() : [rootName, ...pathArr];
+  const ancestors = [originalData];
+  let node = originalData;
+  for (let i = 1; i < resolvedPath.length; i++){
+    const targetName = resolvedPath[i];
+    const next = (node.children || []).find(child => child.name === targetName);
+    if (!next) return false;
+    ancestors.push(next);
+    node = next;
+  }
+  stack.length = 0;
+  for (let i = 0; i < ancestors.length - 1; i++){
+    stack.push({ root: ancestors[i], path: resolvedPath.slice(0, i + 1) });
+  }
+  const parentNode = ancestors.length > 1 ? ancestors[ancestors.length - 2] : null;
+  const parentTotalResolved = parentTotal ?? (parentNode ? computeTotal(parentNode) : null);
+  render(node, resolvedPath, parentTotalResolved);
+  return true;
+}
+
+function handleSearch(query){
+  if (!query || !query.trim()){
+    setSearchHint('Type a ministry or programme to navigate.', false);
+    return;
+  }
+  const lower = query.trim().toLowerCase();
+  let match = searchIndex.find(entry => entry.name.toLowerCase() === lower);
+  if (!match){
+    match = searchIndex.find(entry => entry.name.toLowerCase().includes(lower));
+  }
+  if (!match){
+    setSearchHint(`No match for “${query}”.`, true);
+    return;
+  }
+  if (focusByPath(match.path, match.parentTotal)){
+    const share = match.parentTotal ? pct(match.total, match.parentTotal) : '100%';
+    setSearchHint(`Showing ${match.name} • ${match.total ? THB(match.total) + ' THB' : '—'} (${share}).`, false);
+    searchInput && (searchInput.value = match.name);
+  } else {
+    setSearchHint(`Could not open “${match.name}”.`, true);
+  }
+}
+
+function render(root, pathArr, parentTotal){
   currentRoot = root;
   currentPath = pathArr || [root.name];
   const total = computeTotal(root);
@@ -92,7 +176,8 @@ function render(root, pathArr){
       emphasis: { focus: 'descendant' }
     }]
   });
-  updateDetails(root, currentPath, total, null);
+  const shareBase = parentTotal != null ? parentTotal : null;
+  updateDetails(root, currentPath, total, shareBase);
   document.getElementById('backBtn').disabled = stack.length === 0;
 }
 
@@ -111,9 +196,9 @@ function updateDetails(node, pathArr, total, parentTotal){
   document.getElementById('exportNodeNotes').onclick = () => exportNotes(pathStr);
 }
 
-function drillTo(node, nextPathArr){
+function drillTo(node, nextPathArr, parentTotal){
   stack.push({ root: currentRoot, path: currentPath });
-  render(node, nextPathArr);
+  render(node, nextPathArr, parentTotal);
 }
 
 chart.on('click', function (params) {
@@ -123,19 +208,35 @@ chart.on('click', function (params) {
     parentTotal = computeTotal(params.treeAncestors[1]);
   }
   const pathArr = (params.treePathInfo || []).map(x => x.name);
-  updateDetails(node, pathArr, computeTotal(node), parentTotal);
+  const nodeTotal = computeTotal(node);
+  updateDetails(node, pathArr, nodeTotal, parentTotal);
   if (node && node.children && node.children.length){
-    drillTo(node, pathArr);
+    drillTo(node, pathArr, parentTotal);
   }
 });
 
 document.getElementById('backBtn').onclick = () => {
   if (!stack.length) return;
   const prev = stack.pop();
-  render(prev.root, prev.path);
+  let parentTotal = null;
+  if (prev.path && prev.path.length > 1 && originalData){
+    const parentPath = prev.path.slice(0, -1);
+    let parentNode = originalData;
+    for (let i = 1; i < parentPath.length; i++){
+      const next = (parentNode.children || []).find(child => child.name === parentPath[i]);
+      if (!next) break;
+      parentNode = next;
+    }
+    parentTotal = computeTotal(parentNode);
+  }
+  render(prev.root, prev.path, parentTotal);
 };
 document.getElementById('resetBtn').onclick = () => {
-  if (originalData){ stack.length = 0; render(originalData, [originalData.name]); }
+  if (originalData){
+    stack.length = 0;
+    render(originalData, [originalData.name], null);
+    setSearchHint(defaultHint, false);
+  }
 };
 document.getElementById('dlPngBtn').onclick = () => {
   const url = chart.getDataURL({ pixelRatio: 2, backgroundColor: '#0b0e12' });
@@ -144,6 +245,25 @@ document.getElementById('dlPngBtn').onclick = () => {
   a.download = 'th_budget_mindmap.png';
   a.click();
 };
+
+if (searchForm && searchInput){
+  searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    handleSearch(searchInput.value);
+  });
+  searchInput.addEventListener('change', () => {
+    if (searchInput.value){
+      handleSearch(searchInput.value);
+    }
+  });
+  searchInput.addEventListener('input', () => {
+    if (!searchInput.value.trim()){
+      setSearchHint(defaultHint, false);
+    } else if (searchHint) {
+      searchHint.classList.remove('error');
+    }
+  });
+}
 
 // Notes utilities
 function lsKey(pathStr){ return 'thb_notes::' + pathStr; }
@@ -206,14 +326,16 @@ async function loadDefault(){
     const res = await fetch('data/th_budget_FY2025.json', { cache: 'no-store' });
     const json = await res.json();
     originalData = sanitize(json);
-    render(originalData, [originalData.name]);
+    render(originalData, [originalData.name], null);
     updateOverview();
+    updateSearchIndex();
     const lastMod = res.headers.get('last-modified');
     if (lastMod){
       setOverviewUpdated(new Date(lastMod).toLocaleString());
     } else {
       setOverviewUpdated(formatUpdated());
     }
+    setSearchHint('Loaded FY2025 national budget dataset.', false);
   } catch (e){
     console.warn('Failed to load default JSON, using demo set:', e);
     const demo = {
@@ -230,9 +352,11 @@ async function loadDefault(){
       ]
     };
     originalData = sanitize(demo);
-    render(originalData, [originalData.name]);
+    render(originalData, [originalData.name], null);
     updateOverview();
+    updateSearchIndex();
     setOverviewUpdated('Demo data');
+    setSearchHint('Using demo dataset because the default file could not be loaded.', true);
   }
 }
 
@@ -245,9 +369,11 @@ document.getElementById('fileInput').addEventListener('change', (e) => {
       const parsed = JSON.parse(ev.target.result);
       originalData = sanitize(parsed);
       stack.length = 0;
-      render(originalData, [originalData.name]);
+      render(originalData, [originalData.name], null);
       updateOverview();
+      updateSearchIndex();
       setOverviewUpdated('Custom upload • ' + formatUpdated());
+      setSearchHint('Loaded custom dataset from file upload.', false);
     } catch(err){
       alert('Invalid JSON: ' + err.message);
     }
