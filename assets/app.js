@@ -19,7 +19,7 @@ const defaultHint = searchHint ? searchHint.textContent : '';
 let searchIndex = [];
 
 const THB = n => new Intl.NumberFormat('en-US').format(n);
-const pct = (num, den) => (den && num != null) ? ((num/den)*100).toFixed(2) + '%' : '—';
+const pct = (num, den) => (den && num != null) ? ((num/den)*100).toFixed(2) + '%' : (num != null ? '100%' : '—');
 const formatUpdated = (source) => new Intl.DateTimeFormat('en-GB', {
   dateStyle: 'medium',
   timeStyle: 'short'
@@ -30,27 +30,37 @@ function sanitize(node){
   if (v === '' || v === null || v === undefined) node.value = null;
   else node.value = Number(v);
   node.desc = node.desc || '';
+  node.updated = node.updated || null;
+  delete node._total;
   if (Array.isArray(node.children)) node.children = node.children.map(sanitize);
   else node.children = [];
   return node;
 }
 
-function computeTotal(node){
+function annotateTotals(node){
   if (!node) return null;
-  if (typeof node.value === 'number' && !Number.isNaN(node.value)){
-    return node.value;
-  }
-  if (!node.children || !node.children.length) return null;
+  const children = Array.isArray(node.children) ? node.children : [];
   let sum = 0;
   let hasValue = false;
-  for (const child of node.children){
-    const childTotal = computeTotal(child);
+  if (typeof node.value === 'number' && !Number.isNaN(node.value)){
+    sum += node.value;
+    hasValue = true;
+  }
+  for (const child of children){
+    const childTotal = annotateTotals(child);
     if (childTotal != null){
       sum += childTotal;
       hasValue = true;
     }
   }
-  return hasValue ? sum : null;
+  node._total = hasValue ? sum : null;
+  return node._total;
+}
+
+function computeTotal(node){
+  if (!node) return null;
+  if (typeof node._total === 'number') return node._total;
+  return annotateTotals(node);
 }
 function countNodes(node){
   if (!node) return 0;
@@ -198,7 +208,7 @@ function updateDetails(node, pathArr, total, parentTotal){
   const nodeTotal = computeTotal(node);
   document.getElementById('nodeTitle').textContent = 'Center: ' + node.name;
   document.getElementById('nodeTotal').textContent = nodeTotal != null ? THB(nodeTotal) + ' THB' : '—';
-  document.getElementById('nodeShare').textContent = parentTotal ? pct(nodeTotal, parentTotal) : '—';
+  document.getElementById('nodeShare').textContent = parentTotal ? pct(nodeTotal, parentTotal) : (nodeTotal != null ? '100%' : '—');
   document.getElementById('nodePath').textContent = pathStr;
   document.getElementById('nodeDesc').textContent = node.desc || '—';
 
@@ -338,11 +348,14 @@ async function loadDefault(){
     const res = await fetch('data/th_budget_FY2025.json', { cache: 'no-store' });
     const json = await res.json();
     originalData = sanitize(json);
+    annotateTotals(originalData);
     render(originalData, [originalData.name], null);
     updateOverview();
     updateSearchIndex();
     const lastMod = res.headers.get('last-modified');
-    if (lastMod){
+    if (originalData.updated){
+      setOverviewUpdated(formatUpdated(new Date(originalData.updated)));
+    } else if (lastMod){
       setOverviewUpdated(new Date(lastMod).toLocaleString());
     } else {
       setOverviewUpdated(formatUpdated());
@@ -364,6 +377,7 @@ async function loadDefault(){
       ]
     };
     originalData = sanitize(demo);
+    annotateTotals(originalData);
     render(originalData, [originalData.name], null);
     updateOverview();
     updateSearchIndex();
@@ -380,11 +394,13 @@ document.getElementById('fileInput').addEventListener('change', (e) => {
     try{
       const parsed = JSON.parse(ev.target.result);
       originalData = sanitize(parsed);
+      annotateTotals(originalData);
       stack.length = 0;
       render(originalData, [originalData.name], null);
       updateOverview();
       updateSearchIndex();
-      setOverviewUpdated('Custom upload • ' + formatUpdated());
+      const updatedLabel = originalData.updated ? formatUpdated(new Date(originalData.updated)) : formatUpdated();
+      setOverviewUpdated('Custom upload • ' + updatedLabel);
       setSearchHint('Loaded custom dataset from file upload.', false);
     } catch(err){
       alert('Invalid JSON: ' + err.message);

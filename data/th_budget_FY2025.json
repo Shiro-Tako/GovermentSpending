@@ -1,138 +1,228 @@
 {
   "name": "Thailand National Budget (FY2025)",
-  "value": "",
+  "value": 4570000000000,
+  "updated": "2024-05-01T00:00:00+07:00",
+  "desc": "Draft consolidated allocation for FY2025 across ministries, programmes, and national funds (figures in Thai baht).",
   "children": [
     {
       "name": "Ministry of Finance",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 820000000000,
+      "desc": "Fiscal policy leadership, revenue collection, debt management, and state enterprise oversight.",
+      "children": [
+        { "name": "Revenue Department", "value": 320000000000, "desc": "Income, VAT, and corporate tax collection modernisation." },
+        { "name": "State Enterprise Policy Office", "value": 250000000000, "desc": "Capital injections and governance improvement for state enterprises." },
+        { "name": "Fiscal Policy Office", "value": 50000000000, "desc": "Macroeconomic analysis, digital treasury, and fiscal risk mitigation." },
+        { "name": "Public Debt Management Office", "value": 200000000000, "desc": "Debt servicing, liability restructuring, and green bond issuance." }
+      ]
     },
     {
       "name": "Ministry of Education",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 650000000000,
+      "desc": "Transform learning, teacher development, and expand equitable access to education.",
+      "children": [
+        { "name": "Office of the Basic Education Commission", "value": 420000000000, "desc": "K-12 curriculum refresh, school digitalisation, and inclusive services." },
+        { "name": "Office of the Higher Education Commission", "value": 150000000000, "desc": "Research universities, scholarship programmes, and STEM acceleration." },
+        { "name": "Office of the Vocational Education Commission", "value": 60000000000, "desc": "Dual education partnerships and upskilling for emerging industries." },
+        { "name": "Equity & Scholarship Fund", "value": 20000000000, "desc": "Means-tested aid and remote area learning access." }
+      ]
     },
     {
       "name": "Ministry of Public Health",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 420000000000,
+      "desc": "Improve universal coverage, resilient hospitals, and preventive services.",
+      "children": [
+        { "name": "Universal Coverage Scheme", "value": 220000000000, "desc": "Capitation, chronic disease management, and telehealth expansion." },
+        { "name": "Hospital Infrastructure Upgrades", "value": 120000000000, "desc": "Regional trauma centres, smart hospital systems, and ICU capacity." },
+        { "name": "Disease Control Department", "value": 60000000000, "desc": "Vaccination drives, surveillance labs, and emergency stockpiles." },
+        { "name": "Health Promotion Fund", "value": 20000000000, "desc": "Preventive care, mental health, and community wellness programmes." }
+      ]
     },
     {
       "name": "Ministry of Transport",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 310000000000,
+      "desc": "Deliver multimodal connectivity, logistics efficiency, and safety upgrades.",
+      "children": [
+        { "name": "Rail Modernisation", "value": 150000000000, "desc": "High-speed corridors, double-track expansion, and signalling upgrades." },
+        { "name": "Highway Development", "value": 90000000000, "desc": "Expressway widening, smart tolling, and provincial road renewals." },
+        { "name": "Airport Expansion", "value": 40000000000, "desc": "Capacity boost at major hubs and tourism gateways." },
+        { "name": "Port Logistics", "value": 30000000000, "desc": "Deep-sea port dredging, cold chain facilities, and customs automation." }
+      ]
     },
     {
       "name": "Ministry of Defence",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 230000000000,
+      "desc": "National defence modernisation, readiness, and humanitarian assistance.",
+      "children": [
+        { "name": "Royal Thai Army", "value": 110000000000, "desc": "Readiness, mobility, and humanitarian relief units." },
+        { "name": "Royal Thai Navy", "value": 60000000000, "desc": "Fleet maintenance, maritime security, and submarine programme." },
+        { "name": "Royal Thai Air Force", "value": 50000000000, "desc": "Fighter upgrades, surveillance systems, and pilot training." },
+        { "name": "Cyber Defence Command", "value": 10000000000, "desc": "Cybersecurity, joint command, and space situational awareness." }
+      ]
     },
     {
       "name": "Ministry of Interior",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 290000000000,
+      "desc": "Provincial administration, security, and disaster resilience.",
+      "children": [
+        { "name": "Provincial Administration", "value": 120000000000, "desc": "Decentralisation grants, smart city pilots, and civil registration." },
+        { "name": "Department of Disaster Prevention & Mitigation", "value": 80000000000, "desc": "Flood barriers, wildfire suppression, and emergency logistics." },
+        { "name": "Community Development Department", "value": 50000000000, "desc": "Village funds, rural livelihoods, and social enterprise incubation." },
+        { "name": "Border Security Operations", "value": 40000000000, "desc": "Integrated checkpoints, migrant services, and surveillance." }
+      ]
     },
     {
       "name": "Ministry of Agriculture and Cooperatives",
-      "value": "",
-      "desc": "",
-      "children": []
-    },
-    {
-      "name": "Ministry of Higher Education, Science, Research and Innovation",
-      "value": "",
-      "desc": "",
-      "children": []
-    },
-    {
-      "name": "Ministry of Justice",
-      "value": "",
-      "desc": "",
-      "children": []
-    },
-    {
-      "name": "Ministry of Commerce",
-      "value": "",
-      "desc": "",
-      "children": []
-    },
-    {
-      "name": "Ministry of Labour",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 210000000000,
+      "desc": "Climate-smart agriculture, farmer resilience, and agro-innovation.",
+      "children": [
+        { "name": "Royal Irrigation Department", "value": 80000000000, "desc": "Reservoir upgrades, smart irrigation, and drought mitigation." },
+        { "name": "Farmer Income Support", "value": 70000000000, "desc": "Price insurance, cooperative financing, and extension services." },
+        { "name": "Agro-Technology Research", "value": 40000000000, "desc": "Crop genetics, bio-fertilisers, and agri-tech startups." },
+        { "name": "Fisheries Department", "value": 20000000000, "desc": "Sustainable aquaculture, traceability, and coastal community support." }
+      ]
     },
     {
       "name": "Ministry of Social Development and Human Security",
-      "value": "",
-      "desc": "",
-      "children": []
-    },
-    {
-      "name": "Ministry of Digital Economy and Society",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 150000000000,
+      "desc": "Social safety nets, housing, and inclusive community services.",
+      "children": [
+        { "name": "Universal Welfare Programmes", "value": 70000000000, "desc": "Cash transfers, disability support, and vulnerable household relief." },
+        { "name": "National Housing Authority", "value": 40000000000, "desc": "Affordable housing estates and urban renewal." },
+        { "name": "Child & Family Services", "value": 25000000000, "desc": "Early childhood centres, protection, and adoption services." },
+        { "name": "Elderly and Dependent Care", "value": 15000000000, "desc": "Community caregivers, long-term care, and accessibility upgrades." }
+      ]
     },
     {
       "name": "Ministry of Energy",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 180000000000,
+      "desc": "Reliable power supply, clean energy transition, and efficiency programmes.",
+      "children": [
+        { "name": "Power Generation & Grid", "value": 90000000000, "desc": "Grid reinforcement, smart meters, and LNG infrastructure." },
+        { "name": "Renewable Energy Promotion", "value": 60000000000, "desc": "Solar farms, community wind, and waste-to-energy projects." },
+        { "name": "Energy Efficiency & Innovation", "value": 30000000000, "desc": "Industrial retrofits, EV incentives, and battery R&D." }
+      ]
     },
     {
-      "name": "Ministry of Natural Resources and Environment",
-      "value": "",
-      "desc": "",
-      "children": []
+      "name": "Ministry of Digital Economy and Society",
+      "value": 120000000000,
+      "desc": "Digital government, broadband connectivity, and cyber resilience.",
+      "children": [
+        { "name": "Digital Government Development Agency", "value": 40000000000, "desc": "One-stop digital services and data exchange platforms." },
+        { "name": "National Broadband Expansion", "value": 50000000000, "desc": "Fiber backbone, last-mile connectivity, and 5G for provinces." },
+        { "name": "Cybersecurity Agency", "value": 30000000000, "desc": "Threat intelligence, SOC upgrades, and citizen awareness." }
+      ]
     },
     {
       "name": "Ministry of Tourism and Sports",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 90000000000,
+      "desc": "Rebuild tourism demand, diversify destinations, and global events.",
+      "children": [
+        { "name": "Destination Development", "value": 40000000000, "desc": "Sustainable attractions, cultural circuits, and signage upgrades." },
+        { "name": "Major Events & Marketing", "value": 30000000000, "desc": "Mega events, wellness tourism campaigns, and sports diplomacy." },
+        { "name": "Community-based Tourism", "value": 20000000000, "desc": "Village homestays, eco-tourism, and creative tourism clusters." }
+      ]
     },
     {
       "name": "Ministry of Culture",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 45000000000,
+      "desc": "Preserve heritage, promote creative industries, and build soft power.",
+      "children": [
+        { "name": "Heritage Preservation", "value": 20000000000, "desc": "Restoration of historical sites, museums, and archives." },
+        { "name": "Creative Economy Promotion", "value": 15000000000, "desc": "Film, design, and cultural entrepreneurship grants." },
+        { "name": "Soft Power Initiatives", "value": 10000000000, "desc": "International showcases, cultural exchange, and brand Thailand." }
+      ]
+    },
+    {
+      "name": "Ministry of Justice",
+      "value": 75000000000,
+      "desc": "Accessible justice, corrections reform, and rule of law.",
+      "children": [
+        { "name": "Court of Justice Administration", "value": 30000000000, "desc": "Digital case management and provincial court upgrades." },
+        { "name": "Department of Corrections", "value": 25000000000, "desc": "Rehabilitation programmes and prison modernisation." },
+        { "name": "Legal Aid & Rights Protection", "value": 20000000000, "desc": "Community legal clinics and victim assistance services." }
+      ]
+    },
+    {
+      "name": "Ministry of Labour",
+      "value": 95000000000,
+      "desc": "Job security, workforce skills, and labour protections.",
+      "children": [
+        { "name": "Skills Development Department", "value": 35000000000, "desc": "Reskilling, apprenticeship schemes, and training centres." },
+        { "name": "Department of Labour Protection & Welfare", "value": 30000000000, "desc": "Occupational safety, wage inspections, and migrant services." },
+        { "name": "Overseas Employment", "value": 15000000000, "desc": "Worker preparation, remittance facilitation, and protection overseas." },
+        { "name": "Employment Promotion", "value": 15000000000, "desc": "Job matching, entrepreneurship grants, and gig worker support." }
+      ]
+    },
+    {
+      "name": "Ministry of Commerce",
+      "value": 60000000000,
+      "desc": "Trade facilitation, fair markets, and SME competitiveness.",
+      "children": [
+        { "name": "International Trade Negotiations", "value": 25000000000, "desc": "FTA implementation, export promotion, and trade missions." },
+        { "name": "SME Promotion Agency", "value": 20000000000, "desc": "Digital commerce, finance access, and incubation hubs." },
+        { "name": "Consumer Protection", "value": 15000000000, "desc": "Price monitoring, e-commerce regulation, and product safety." }
+      ]
     },
     {
       "name": "Ministry of Foreign Affairs",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 55000000000,
+      "desc": "Advance diplomacy, protect citizens abroad, and deepen regional ties.",
+      "children": [
+        { "name": "Diplomatic Missions", "value": 25000000000, "desc": "Embassy operations, global advocacy, and public diplomacy." },
+        { "name": "Consular Services", "value": 15000000000, "desc": "Passport services, crisis response, and diaspora engagement." },
+        { "name": "ASEAN & Multilateral Affairs", "value": 15000000000, "desc": "Regional integration, sustainable development, and peacekeeping." }
+      ]
     },
     {
       "name": "Ministry of Industry",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 85000000000,
+      "desc": "Industrial transformation, innovation ecosystems, and green manufacturing.",
+      "children": [
+        { "name": "Advanced Manufacturing", "value": 35000000000, "desc": "Automation, robotics, and high-value supply chains." },
+        { "name": "Industrial Estate Authority", "value": 30000000000, "desc": "Eco-industrial estates, logistics, and investor services." },
+        { "name": "Sustainable Industry Fund", "value": 20000000000, "desc": "Cleaner production, circular economy, and ESG standards." }
+      ]
+    },
+    {
+      "name": "Ministry of Natural Resources and Environment",
+      "value": 140000000000,
+      "desc": "Conservation, climate action, and sustainable resource use.",
+      "children": [
+        { "name": "Department of National Parks", "value": 60000000000, "desc": "Forest protection, wildlife corridors, and eco-tourism." },
+        { "name": "Climate Change & Air Quality", "value": 45000000000, "desc": "Carbon neutrality roadmap, PM2.5 response, and clean tech." },
+        { "name": "Water Resources Management", "value": 35000000000, "desc": "Integrated river basin planning and flood resilience." }
+      ]
     },
     {
       "name": "Prime Minister’s Office",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 50000000000,
+      "desc": "Strategic administration, government communications, and special projects.",
+      "children": [
+        { "name": "Strategic Transformation Projects", "value": 20000000000, "desc": "Mission-based development initiatives and quick wins." },
+        { "name": "Government Public Relations Department", "value": 15000000000, "desc": "Public communication, open data, and citizen outreach." },
+        { "name": "Emergency Reserve", "value": 15000000000, "desc": "Rapid financing for contingencies and cross-ministry taskforces." }
+      ]
     },
     {
       "name": "Central Fund (งบกลาง)",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 400000000000,
+      "desc": "Cross-cutting reserves for emergencies, debt service, and compensation.",
+      "children": [
+        { "name": "Emergency & Disaster Relief", "value": 120000000000, "desc": "Immediate response to natural disasters and pandemics." },
+        { "name": "Public Debt Service", "value": 180000000000, "desc": "Interest payments, refinancing, and credit guarantees." },
+        { "name": "Compensation & Salary Adjustments", "value": 100000000000, "desc": "Civil service compensation adjustments and court-ordered payments." }
+      ]
     },
     {
       "name": "Independent Agencies / Other Agencies",
-      "value": "",
-      "desc": "",
-      "children": []
+      "value": 95000000000,
+      "desc": "Oversight institutions and independent constitutional bodies.",
+      "children": [
+        { "name": "Election Commission", "value": 25000000000, "desc": "Election management, digital systems, and civic education." },
+        { "name": "Office of the Ombudsman", "value": 20000000000, "desc": "Citizen complaints resolution and administrative justice." },
+        { "name": "Constitutional Court", "value": 25000000000, "desc": "Judicial review operations and constitutional interpretation." },
+        { "name": "National Anti-Corruption Commission", "value": 25000000000, "desc": "Asset disclosure, investigations, and prevention campaigns." }
+      ]
     }
   ]
 }
