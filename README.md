@@ -11,8 +11,15 @@ A lightweight, static web app to visualize Thailand’s national budget as a **r
 
 ## Quick start (GitHub Pages)
 1. Push this folder to a public GitHub repo.
-2. Enable **GitHub Pages** (root folder).  
+2. Enable **GitHub Pages** (root folder).
 3. Open `https://<your-username>.github.io/<repo-name>/`.
+
+## Run tests locally
+```bash
+npm install
+npm test
+```
+The test suite exercises the data sanitizing helpers that power the visualization (number coercion, totals, HTML escaping, and localStorage key generation).
 
 ## Data schema
 ```json

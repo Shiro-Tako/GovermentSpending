@@ -32,7 +32,16 @@ h1 { margin:0; font-size:18px; font-weight:600; letter-spacing:.3px; }
 .note { background:#0e1522; border:1px solid #1f2a44; padding:8px 10px; border-radius:10px; margin: 6px 0; font-size:13px; }
 .note time { display:block; color:#8da3b5; font-size:11px; margin-top:2px; }
 .noteInput { display:flex; gap:8px; margin-top: 10px; }
-textarea { flex:1; background:#0b0f16; color:#e5e7eb; border:1px solid #243041; border-radius:10px; padding:10px; resize: vertical; min-height:64px; }
+textarea {
+  flex:1;
+  background:#0b0f16;
+  color:#e5e7eb;
+  border:1px solid #243041;
+  border-radius:10px;
+  padding:10px;
+  resize: vertical;
+  min-height:64px;
+}
 .muted { color:#8da3b5; font-size:12px; }
 .row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
 .small { font-size: 12px; color:#93c5fd; }

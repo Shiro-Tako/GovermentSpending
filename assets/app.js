@@ -1,5 +1,10 @@
 // Core logic for Thailand Budget Mind Map (radial tree with notes)
 const chart = echarts.init(document.getElementById('chart'));
+const utils = window.BudgetMindMapUtils;
+if (!utils) {
+  throw new Error('BudgetMindMapUtils failed to load');
+}
+const { sanitize, computeTotal, lsKey, escapeHtml } = utils;
 let originalData = null;    // full tree
 let currentRoot = null;     // current view root
 let currentPath = [];       // path array from original root
@@ -7,23 +12,6 @@ const stack = [];           // navigation stack
 
 const THB = n => new Intl.NumberFormat('en-US').format(n);
 const pct = (num, den) => (den && num != null) ? ((num/den)*100).toFixed(2) + '%' : '—';
-
-function sanitize(node){
-  // Coerce value to number, allow desc, ensure children array
-  const v = node.value;
-  if (v === '' || v === null || v === undefined) node.value = null;
-  else node.value = Number(v);
-  node.desc = node.desc || '';
-  if (Array.isArray(node.children)) node.children = node.children.map(sanitize);
-  else node.children = [];
-  return node;
-}
-
-function sumChildren(node){
-  if (!node.children) return 0;
-  return node.children.reduce((s, c) => s + (c.value ?? sumChildren(c)), 0);
-}
-function computeTotal(node){ return node.value ?? sumChildren(node); }
 
 function render(root, pathArr){
   currentRoot = root;
@@ -118,15 +106,13 @@ document.getElementById('dlPngBtn').onclick = () => {
 };
 
 // Notes utilities
-function lsKey(pathStr){ return 'thb_notes::' + pathStr; }
-function escapeHtml(s){ return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',''':'&#39;'}[m])); }
 function loadNotes(pathStr){
   const el = document.getElementById('notesList');
   el.innerHTML = '';
   let notes = [];
   try { notes = JSON.parse(localStorage.getItem(lsKey(pathStr)) || '[]'); } catch(e){ notes = []; }
   if (!notes.length){
-    el.innerHTML = '<div class="muted">No messages yet. Start the discussion for this ministry.</div>';
+    el.innerHTML = '<div class="muted">No notes yet. Start the discussion for this ministry.</div>';
     return;
   }
   for (const n of notes){
@@ -148,7 +134,7 @@ function addNote(pathStr){
   loadNotes(pathStr);
 }
 function clearNotes(pathStr){
-  if (!confirm('Clear all messages for this ministry?')) return;
+  if (!confirm('Clear all notes for this ministry?')) return;
   localStorage.removeItem(lsKey(pathStr));
   loadNotes(pathStr);
 }

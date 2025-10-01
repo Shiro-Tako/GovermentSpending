@@ -37,7 +37,7 @@
       </div>
       <div class="divider"></div>
       <div class="notesHeader">
-        <div class="stat"><span class="k">Messages</span> <span class="muted">(saved per-ministry)</span></div>
+        <div class="stat"><span class="k">Notes</span> <span class="muted">(saved per-ministry)</span></div>
         <div class="row">
           <button id="exportNodeNotes" class="btn">Export</button>
           <button id="clearNodeNotes" class="btn">Clear</button>
@@ -45,13 +45,14 @@
       </div>
       <div class="notes" id="notesList"></div>
       <div class="noteInput">
-        <textarea id="noteText" placeholder="Write a message about this ministry… (saved only on this device)"></textarea>
+        <textarea id="noteText" placeholder="Write a note about this ministry… (saved only on this device)"></textarea>
         <button id="addNoteBtn" class="btn">Add</button>
       </div>
       <p class="muted">Notes are stored in your browser <code class="small">localStorage</code> and are not uploaded anywhere.</p>
     </aside>
   </main>
 
+  <script src="assets/utils.js"></script>
   <script src="assets/app.js"></script>
 </body>
 </html>

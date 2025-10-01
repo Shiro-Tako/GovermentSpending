@@ -1,0 +1,10 @@
+{
+  "name": "thailand-budget-mind-map",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static visualization for Thailand's national budget with local note-taking.",
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "MIT"
+}
