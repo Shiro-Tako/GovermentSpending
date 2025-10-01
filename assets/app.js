@@ -74,7 +74,7 @@ function render(root, pathArr){
       edgeShape: 'curve',
       layout: 'radial',
       roam: true,
-      initialTreeDepth: 2,
+      initialTreeDepth: 1,
       animationDurationUpdate: 400,
       lineStyle: { color: 'rgba(148, 163, 184, 0.28)' },
       itemStyle: {
@@ -204,6 +204,15 @@ const HTML_ESCAPES = {
 function escapeHtml(s){
   return String(s ?? '').replace(/[&<>"']/g, m => HTML_ESCAPES[m]);
 }
+function formatNoteWords(text){
+  const words = String(text || '')
+    .split(/\s+/)
+    .map(w => w.trim())
+    .filter(Boolean);
+  if (!words.length) return '<span class="note-word">—</span>';
+  return words.map(word => `<span class="note-word">${escapeHtml(word)}</span>`).join('');
+}
+
 function loadNotes(pathStr){
   const el = document.getElementById('notesList');
   el.innerHTML = '';
@@ -216,7 +225,7 @@ function loadNotes(pathStr){
   for (const n of notes){
     const div = document.createElement('div');
     div.className = 'note';
-    div.innerHTML = `${escapeHtml(n.text)}<time>${new Date(n.ts).toLocaleString()}</time>`;
+    div.innerHTML = `<div class="note-words">${formatNoteWords(n.text)}</div><time>${new Date(n.ts).toLocaleString()}</time>`;
     el.appendChild(div);
   }
 }
