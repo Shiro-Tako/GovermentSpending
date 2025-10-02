@@ -1,5 +1,5 @@
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   font-family: 'Inter', 'Noto Sans Thai', 'Sarabun', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
@@ -13,18 +13,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 20% -10%, #1e3a8a 0%, #0b1120 40%, #020617 100%);
-  color: #e2e8f0;
+  padding: 48px 24px;
+  background: radial-gradient(circle at 12% 18%, #fdf7ed 0%, #fefcf9 28%, #eef4ff 82%);
+  color: #0f172a;
 }
 
 .canvas {
   position: relative;
   width: 1980px;
   height: 1080px;
-  padding: 56px 72px;
-  border-radius: 40px;
-  background: linear-gradient(135deg, rgba(6, 12, 24, 0.9), rgba(2, 8, 23, 0.96));
-  box-shadow: 0 32px 120px rgba(2, 6, 23, 0.65);
+  padding: 54px 70px;
+  border-radius: 46px;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 255, 0.9));
+  box-shadow: 0 48px 120px rgba(148, 163, 184, 0.28);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -34,10 +35,14 @@ body {
 .canvas::before {
   content: '';
   position: absolute;
-  inset: -120px -80px;
-  background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.12), transparent 60%);
-  filter: blur(120px);
+  inset: 24px;
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 78% 16%, rgba(59, 130, 246, 0.18), transparent 52%),
+    radial-gradient(circle at 18% 82%, rgba(249, 115, 22, 0.16), transparent 58%),
+    radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.12), transparent 70%);
   pointer-events: none;
+  z-index: 1;
 }
 
 .headline {
@@ -63,13 +68,13 @@ body {
   font-size: 56px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 .metric-label {
   font-size: 16px;
-  color: rgba(226, 232, 240, 0.68);
-  letter-spacing: 0.02em;
+  color: rgba(15, 23, 42, 0.55);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -77,24 +82,25 @@ body {
   display: grid;
   gap: 6px;
   text-align: right;
-  color: rgba(224, 242, 254, 0.85);
+  color: rgba(15, 23, 42, 0.75);
 }
 
 .meta-label {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: rgba(148, 163, 184, 0.75);
+  color: rgba(100, 116, 139, 0.9);
 }
 
 .meta-value {
   font-size: 18px;
   font-weight: 600;
+  color: #1f2937;
 }
 
 .meta-date {
   font-size: 14px;
-  color: rgba(148, 163, 184, 0.85);
+  color: rgba(71, 85, 105, 0.85);
 }
 
 .meta-fy {
@@ -103,10 +109,11 @@ body {
   margin-top: 8px;
   padding: 6px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(56, 189, 248, 0.32);
-  color: #38bdf8;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #b91c1c;
   font-size: 12px;
   letter-spacing: 0.18em;
+  background: rgba(248, 113, 113, 0.1);
 }
 
 .panes {
@@ -127,27 +134,37 @@ body {
 .map-frame {
   position: relative;
   flex: 1;
-  border-radius: 36px;
+  border-radius: 40px;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 30%, rgba(30, 64, 175, 0.2), rgba(3, 7, 18, 0.9));
-  border: 1px solid rgba(15, 118, 230, 0.18);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(241, 245, 249, 0.88));
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  box-shadow: 0 42px 110px rgba(100, 116, 139, 0.28);
 }
 
 .map-frame::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('thailand-outline.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 55% auto;
-  opacity: 0.26;
-  mix-blend-mode: screen;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(148, 163, 184, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 78%, rgba(203, 213, 225, 0.22), transparent 60%),
+    radial-gradient(circle at 65% 32%, rgba(59, 130, 246, 0.1), transparent 65%);
+  opacity: 1;
+}
+
+.map-frame::after {
+  content: '';
+  position: absolute;
+  inset: 32px;
+  border-radius: 32px;
+  border: 2px dashed rgba(203, 213, 225, 0.65);
+  pointer-events: none;
 }
 
 .map-overlay {
   position: absolute;
   inset: 0;
+  padding: 80px;
 }
 
 .center-badge {
@@ -155,31 +172,36 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 320px;
-  padding: 32px;
-  border-radius: 999px;
-  backdrop-filter: blur(18px) saturate(160%);
-  background: rgba(2, 8, 23, 0.65);
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  text-align: center;
-  box-shadow: 0 24px 50px rgba(2, 6, 23, 0.65);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 35% 30%, #1f2937 0%, #111827 68%, #0b1120 100%);
+  border: 10px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 40px 60px rgba(15, 23, 42, 0.35);
   pointer-events: none;
 }
 
 .center-label {
   margin: 0;
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #f0f9ff;
+  color: #f8fafc;
+  text-align: center;
+  text-shadow: 0 10px 24px rgba(15, 23, 42, 0.55);
 }
 
 .center-sub {
-  margin: 6px 0 0;
-  font-size: 14px;
+  margin: 12px 0 0;
+  font-size: 15px;
   letter-spacing: 0.08em;
-  color: rgba(191, 219, 254, 0.85);
+  color: rgba(254, 243, 199, 0.9);
+  text-transform: uppercase;
 }
 
 .map-actions {
@@ -197,11 +219,11 @@ body {
   border-radius: 999px;
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #0f172a;
-  background: linear-gradient(120deg, #38bdf8, #0ea5e9);
-  border: none;
+  background: linear-gradient(120deg, rgba(251, 191, 36, 0.95), rgba(248, 113, 113, 0.95));
+  border: 1px solid rgba(248, 113, 113, 0.3);
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -209,12 +231,13 @@ body {
 
 .pill:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 34px rgba(14, 165, 233, 0.35);
+  box-shadow: 0 18px 34px rgba(251, 191, 36, 0.32);
 }
 
 .pill-ghost {
-  background: rgba(148, 163, 184, 0.15);
-  color: #e2e8f0;
+  background: rgba(14, 165, 233, 0.18);
+  color: #0f172a;
+  border-color: rgba(14, 165, 233, 0.35);
 }
 
 #fileInput {
@@ -231,9 +254,9 @@ body {
   gap: 32px;
   padding: 36px;
   border-radius: 32px;
-  background: rgba(3, 7, 18, 0.72);
-  border: 1px solid rgba(59, 130, 246, 0.22);
-  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 34px 70px rgba(148, 163, 184, 0.26);
 }
 
 .detail-header h2 {
@@ -241,13 +264,14 @@ body {
   font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.01em;
+  color: #111827;
 }
 
 .detail-amount {
   margin: 12px 0 0;
   font-size: 28px;
   font-weight: 600;
-  color: #f8fafc;
+  color: #b91c1c;
 }
 
 .detail-share {
@@ -255,21 +279,21 @@ body {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(148, 163, 184, 0.8);
+  color: rgba(71, 85, 105, 0.9);
 }
 
 .detail-path {
   margin: 12px 0 0;
   font-size: 13px;
   letter-spacing: 0.04em;
-  color: rgba(148, 163, 184, 0.65);
+  color: rgba(100, 116, 139, 0.75);
 }
 
 .detail-desc {
   margin: 18px 0 0;
   font-size: 15px;
   line-height: 1.6;
-  color: rgba(226, 232, 240, 0.85);
+  color: rgba(30, 41, 59, 0.85);
 }
 
 .detail-body h3 {
@@ -277,7 +301,7 @@ body {
   font-size: 16px;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(148, 163, 184, 0.85);
+  color: rgba(71, 85, 105, 0.85);
 }
 
 .children {
@@ -298,25 +322,25 @@ body {
   gap: 12px;
   padding: 14px 18px;
   border-radius: 18px;
-  background: rgba(15, 23, 42, 0.75);
-  border: 1px solid rgba(59, 130, 246, 0.16);
-  box-shadow: 0 12px 26px rgba(2, 6, 23, 0.45);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 12px 26px rgba(148, 163, 184, 0.22);
 }
 
 .children li .name {
   font-size: 15px;
   font-weight: 600;
-  color: #e0f2fe;
+  color: #1f2937;
 }
 
 .children li .amount {
   font-size: 14px;
-  color: rgba(148, 163, 184, 0.85);
+  color: rgba(71, 85, 105, 0.85);
 }
 
 .children li.empty {
   justify-content: center;
-  color: rgba(148, 163, 184, 0.7);
+  color: rgba(148, 163, 184, 0.85);
   font-style: italic;
 }
 
@@ -337,5 +361,15 @@ body {
 
   .detail {
     order: -1;
+  }
+
+  .map-overlay {
+    padding: 48px;
+  }
+
+  .center-badge {
+    width: 240px;
+    height: 240px;
+    border-width: 8px;
   }
 }
