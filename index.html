@@ -3,88 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thailand Budget Mind Map</title>
+  <title>Thailand Budget Atlas</title>
   <link rel="stylesheet" href="assets/styles.css" />
-  <!-- ECharts CDN (allowed external) -->
   <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 </head>
 <body>
-  <div class="page">
-    <header class="topbar">
-      <div class="brand">
-        <span class="badge" id="fyLabel">FY2025</span>
-        <h1>Thailand Budget Explorer</h1>
-        <p class="subtitle">Navigate the national budget mind map, compare ministries, and capture notes for collaboration.</p>
-      </div>
-      <div class="actions">
-        <div class="primary-actions">
-          <label for="fileInput" class="btn secondary">Upload JSON</label>
-          <button id="dlPngBtn" class="btn secondary">Download PNG</button>
-          <a class="btn secondary" href="data/th_budget_FY2025.json" download>Download Data JSON</a>
+  <div class="canvas">
+    <header class="headline">
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-value" id="totalBudget">—</div>
+          <div class="metric-label">Across all ministries</div>
         </div>
-        <div class="secondary-actions">
-          <button id="backBtn" class="btn ghost" disabled>← Back</button>
-          <button id="resetBtn" class="btn ghost">Reset View</button>
-          <a class="btn ghost" href="README.md" target="_blank">Open README</a>
+        <div class="metric">
+          <div class="metric-value" id="ministryCount">—</div>
+          <div class="metric-label">Top-level organisations</div>
+        </div>
+        <div class="metric">
+          <div class="metric-value" id="programCount">—</div>
+          <div class="metric-label">Leaf nodes in this dataset</div>
         </div>
       </div>
-      <input type="file" id="fileInput" accept=".json" title="Load a custom JSON" />
+      <div class="meta">
+        <div class="meta-label">Source</div>
+        <div class="meta-value" id="datasetSource">—</div>
+        <div class="meta-date" id="datasetUpdated">—</div>
+        <div class="meta-fy" id="fyLabel">FY</div>
+      </div>
     </header>
 
-    <section class="overview">
-      <div class="stat-card">
-        <p class="label">Total budget</p>
-        <p class="value" id="totalBudget">—</p>
-        <p class="hint">Across all ministries</p>
-      </div>
-      <div class="stat-card">
-        <p class="label">Ministries tracked</p>
-        <p class="value" id="ministryCount">—</p>
-        <p class="hint">Top-level organisations</p>
-      </div>
-      <div class="stat-card">
-        <p class="label">Programs &amp; funds</p>
-        <p class="value" id="programCount">—</p>
-        <p class="hint">Leaf nodes in this dataset</p>
-      </div>
-      <div class="stat-card wide">
-        <p class="label">Dataset updated</p>
-        <p class="value small" id="datasetUpdated">—</p>
-        <p class="hint">Source: <span id="datasetSource">—</span></p>
-      </div>
-    </section>
-
-    <main class="layout">
-      <div id="chart"></div>
-      <aside class="sidebar">
-        <div id="nodeHeader">
-          <p class="title" id="nodeTitle">Center: —</p>
-          <div class="stat"><span class="k">Total:</span> <span id="nodeTotal">—</span></div>
-          <div class="stat"><span class="k">Share of parent:</span> <span id="nodeShare">—</span></div>
-          <div class="stat"><span class="k">Path:</span> <code class="small" id="nodePath">/</code></div>
-        </div>
-        <div class="divider"></div>
-        <div>
-          <div class="stat collapsible-header">
-            <span class="k">Description</span>
-            <button type="button" class="collapse-toggle" id="toggleDesc" aria-expanded="true">Hide</button>
-          </div>
-          <div class="desc collapsible-body open" id="nodeDesc">Add optional "desc" in your JSON to show details for this ministry.</div>
-        </div>
-        <div class="divider"></div>
-        <div class="notesHeader">
-          <div class="stat"><span class="k">Messages</span> <span class="muted">(saved per-ministry)</span></div>
-          <div class="row">
-            <button id="exportNodeNotes" class="btn">Export</button>
-            <button id="clearNodeNotes" class="btn">Clear</button>
+    <main class="panes">
+      <section class="map" aria-label="Budget network map of Thailand">
+        <div class="map-frame">
+          <div class="map-overlay" id="chart"></div>
+          <div class="center-badge">
+            <p class="center-label">Thailand Budget</p>
+            <p class="center-sub">National allocation overview</p>
           </div>
         </div>
-        <div class="notes" id="notesList"></div>
-        <div class="noteInput">
-          <textarea id="noteText" placeholder="Write a message about this ministry… (saved only on this device)"></textarea>
-          <button id="addNoteBtn" class="btn">Add</button>
+        <div class="map-actions">
+          <label for="fileInput" class="pill">Upload JSON</label>
+          <a class="pill" href="data/th_budget_FY2025.json" download>Download Data</a>
+          <button id="dlPngBtn" class="pill">Export PNG</button>
+          <button id="resetBtn" class="pill pill-ghost">Reset View</button>
         </div>
-        <p class="muted">Notes are stored in your browser <code class="small">localStorage</code> and are not uploaded anywhere.</p>
+        <input type="file" id="fileInput" accept=".json" />
+      </section>
+      <aside class="detail">
+        <div class="detail-header">
+          <h2 id="nodeTitle">Select a ministry</h2>
+          <p class="detail-amount" id="nodeTotal">—</p>
+          <p class="detail-share">Share of parent: <span id="nodeShare">—</span></p>
+          <p class="detail-path" id="nodePath">/</p>
+          <p class="detail-desc" id="nodeDesc">Click a ministry node to view its departments.</p>
+        </div>
+        <div class="detail-body">
+          <h3>Departments</h3>
+          <ul id="childrenList" class="children"></ul>
+        </div>
       </aside>
     </main>
   </div>
