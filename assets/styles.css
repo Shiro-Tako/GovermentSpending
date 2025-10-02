@@ -186,18 +186,18 @@ body {
 
 .layout {
   flex: 1;
-  width: min(1240px, calc(100% - 48px));
+  width: min(1360px, calc(100% - 48px));
   margin: 0 auto 36px;
   display: grid;
   gap: 20px;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: minmax(0, 1fr) 320px;
   align-items: stretch;
 }
 
 #chart {
   width: 100%;
-  height: 70vh;
-  min-height: 520px;
+  height: 78vh;
+  min-height: 640px;
   background: rgba(15, 23, 42, 0.55);
   border: 1px solid rgba(148, 163, 184, 0.18);
   border-radius: 28px;
@@ -212,8 +212,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  height: 70vh;
-  min-height: 520px;
+  height: 78vh;
+  min-height: 640px;
   overflow-y: auto;
   box-shadow: 0 18px 48px rgba(8, 11, 24, 0.45);
 }
@@ -243,6 +243,39 @@ body {
   line-height: 1.6;
   margin: 6px 0 10px;
   white-space: pre-wrap;
+}
+
+.collapsible-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.collapse-toggle {
+  border: none;
+  background: rgba(56, 189, 248, 0.14);
+  color: #bae6fd;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.collapse-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.collapsible-body {
+  display: none;
+}
+
+.collapsible-body.open {
+  display: block;
 }
 
 .notesHeader {
@@ -289,49 +322,12 @@ body {
 .note-word {
   display: inline-flex;
   align-items: center;
-// choose a safe initial depth (use 1 if depth is undefined/null/not a number)
-const initialDepth = Number.isFinite?.(depth) ? depth : (Number.isFinite(depth) ? depth : 1);
-
-option = {
-  // ...
-  series: [{
-    type: 'tree',
-    // keep nodes expanded to show ministry box by default
-    expandAndCollapse: false,
-    initialTreeDepth: initialDepth, // dynamic, with fallback
-    animationDurationUpdate: 400,
-    lineStyle: { color: 'rgba(148, 163, 184, 0.28)' },
-    itemStyle: {
-      color: '#38bdf8',
-      borderColor: 'rgba(148,163,184,0.35)',
-      borderWidth: 1.2
-    },
-    label: {
-      position: 'top',
-      verticalAlign: 'middle',
-      align: 'center',
-      rotate: 'radial',
-      distance: 12,
-      color: '#f1f5f9',
-      fontSize: 12,
-      formatter: function (params) {
-        const n = params.data;
-        // guard ancestors & root
-        const ancestors = (params.treeAncestors && params.treeAncestors.length > 0)
-          ? params.treeAncestors
-          : [];
-        const parent = ancestors.length > 1 ? ancestors[1] : (typeof root !== 'undefined' ? root : n);
-        const pv = computeTotal(n) || 0;
-        const pTotal = computeTotal(parent) || pv || 1;
-        const share = pct(pv, pTotal);
-        return n.name + (pv ? '\n' + compactTHB(pv) + ' (' + share + ')' : '');
-      }
-    }
-    // ... any other series options
-  }]
-  // ... any other top-level options
-};
-
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.22);
+  color: #e0f2fe;
+  font-weight: 600;
+  font-size: 12px;
 }
 
 .note time {

@@ -19,6 +19,25 @@ const THB = n => new Intl.NumberFormat('en-US').format(n);
 const compactTHB = n => '฿' + new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 2 }).format(n);
 const pct = (num, den) => (den && num != null) ? ((num/den)*100).toFixed(2) + '%' : '—';
 
+const descEl = document.getElementById('nodeDesc');
+const descToggleBtn = document.getElementById('toggleDesc');
+let isDescOpen = true;
+
+function setDescOpen(open){
+  isDescOpen = open;
+  if (descToggleBtn){
+    descToggleBtn.textContent = open ? 'Hide' : 'Show';
+    descToggleBtn.setAttribute('aria-expanded', String(open));
+  }
+  if (descEl){
+    descEl.classList.toggle('open', open);
+  }
+}
+
+if (descToggleBtn){
+  descToggleBtn.addEventListener('click', () => setDescOpen(!isDescOpen));
+}
+
 function sanitize(node){
   // Coerce value to number, allow desc, ensure children array
   const v = node.value;
@@ -78,7 +97,7 @@ function render(root, pathArr, depthOverride){
       layout: 'radial',
       roam: true,
 
-      expandAndCollapse: false,
+      expandAndCollapse: true,
       initialTreeDepth: depth,
       animationDuration: 450,
       animationDurationUpdate: 400,
@@ -117,6 +136,7 @@ function render(root, pathArr, depthOverride){
       emphasis: { focus: 'descendant' }
     }]
   });
+  chart.resize();
   updateDetails(root, currentPath, total, null);
   document.getElementById('backBtn').disabled = stack.length === 0;
 }
@@ -156,6 +176,7 @@ function updateSummaryCards(root){
 function applyData(data){
   originalData = sanitize(data);
   stack.length = 0;
+  setDescOpen(true);
   render(originalData, [originalData.name], 1);
   updateSummaryCards(originalData);
 }
@@ -167,7 +188,8 @@ function updateDetails(node, pathArr, total, parentTotal){
   document.getElementById('nodeTotal').textContent = nodeTotal != null ? '฿' + THB(nodeTotal) : '—';
   document.getElementById('nodeShare').textContent = parentTotal ? pct(nodeTotal, parentTotal) : '—';
   document.getElementById('nodePath').textContent = pathStr;
-  document.getElementById('nodeDesc').textContent = node.desc || '—';
+  if (descEl){ descEl.textContent = node.desc || '—'; }
+  setDescOpen(isDescOpen);
 
   loadNotes(pathStr);
   document.getElementById('addNoteBtn').onclick = () => addNote(pathStr);
