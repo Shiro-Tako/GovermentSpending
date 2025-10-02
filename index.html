@@ -65,8 +65,11 @@
         </div>
         <div class="divider"></div>
         <div>
-          <div class="stat"><span class="k">Description</span></div>
-          <div class="desc" id="nodeDesc">Add optional "desc" in your JSON to show details for this ministry.</div>
+          <div class="stat collapsible-header">
+            <span class="k">Description</span>
+            <button type="button" class="collapse-toggle" id="toggleDesc" aria-expanded="true">Hide</button>
+          </div>
+          <div class="desc collapsible-body open" id="nodeDesc">Add optional "desc" in your JSON to show details for this ministry.</div>
         </div>
         <div class="divider"></div>
         <div class="notesHeader">
