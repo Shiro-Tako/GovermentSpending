@@ -77,8 +77,11 @@ function render(root, pathArr, depthOverride){
       edgeShape: 'curve',
       layout: 'radial',
       roam: true,
+
       expandAndCollapse: false,
       initialTreeDepth: depth,
+=======
+     main
       animationDurationUpdate: 400,
       lineStyle: { color: 'rgba(148, 163, 184, 0.28)' },
       itemStyle: {
