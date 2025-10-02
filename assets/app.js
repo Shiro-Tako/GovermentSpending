@@ -34,6 +34,7 @@ const compactTHB = (value) =>
 const pct = (value, total) =>
   total && value != null ? ((value / total) * 100).toFixed(2) + '%' : '—';
 
+
 function parseBudgetValue(value) {
   if (value == null || value === '') return null;
   if (typeof value === 'number' && !Number.isNaN(value)) return value;
@@ -68,6 +69,7 @@ function sanitize(node, parent = null) {
     ? node.children.map((child) => sanitize(child, copy))
     : [];
   Object.defineProperty(copy, '__parent', { value: parent, enumerable: false });
+
   return copy;
 }
 
@@ -472,6 +474,7 @@ function renderMindmap() {
   chart.resize();
 }
 
+
 function focusNode(node) {
   if (!node) return;
   currentCenter = node;
@@ -480,6 +483,7 @@ function focusNode(node) {
   renderMindmap();
   const path = buildPath(node);
   showNodeDetails(node, path, node.__parent || null);
+
 }
 
 chart.on('click', (params) => {
