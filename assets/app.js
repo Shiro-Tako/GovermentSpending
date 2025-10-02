@@ -80,8 +80,7 @@ function render(root, pathArr, depthOverride){
 
       expandAndCollapse: false,
       initialTreeDepth: depth,
-=======
-     main
+      animationDuration: 450,
       animationDurationUpdate: 400,
       lineStyle: { color: 'rgba(148, 163, 184, 0.28)' },
       itemStyle: {
