@@ -3,6 +3,7 @@ const chart = echarts.init(document.getElementById('chart'));
 let originalData = null;    // full tree
 let currentRoot = null;     // current view root
 let currentPath = [];       // path array from original root
+let currentDepth = 1;       // current tree depth shown
 const stack = [];           // navigation stack
 
 const summaryEls = {
@@ -35,9 +36,11 @@ function sumChildren(node){
 }
 function computeTotal(node){ return node.value ?? sumChildren(node); }
 
-function render(root, pathArr){
+function render(root, pathArr, depthOverride){
   currentRoot = root;
   currentPath = pathArr || [root.name];
+  const depth = depthOverride != null ? depthOverride : 1;
+  currentDepth = depth;
   const total = computeTotal(root);
   chart.setOption({
     backgroundColor: 'rgba(0,0,0,0)',
@@ -74,7 +77,8 @@ function render(root, pathArr){
       edgeShape: 'curve',
       layout: 'radial',
       roam: true,
-      initialTreeDepth: 2,
+      expandAndCollapse: false,
+      initialTreeDepth: depth,
       animationDurationUpdate: 400,
       lineStyle: { color: 'rgba(148, 163, 184, 0.28)' },
       itemStyle: {
@@ -83,9 +87,11 @@ function render(root, pathArr){
         borderWidth: 1.2
       },
       label: {
-        position: 'right',
+        position: 'top',
         verticalAlign: 'middle',
-        align: 'left',
+        align: 'center',
+        rotate: 'radial',
+        distance: 12,
         color: '#f1f5f9',
         fontSize: 12,
         formatter: function(params){
@@ -94,7 +100,16 @@ function render(root, pathArr){
           const parent = params.treeAncestors && params.treeAncestors.length > 1 ? params.treeAncestors[1] : root;
           const pTotal = computeTotal(parent);
           const share = pct(pv, pTotal);
-          return n.name + (pv ? ' • ' + compactTHB(pv) + ' (' + share + ')' : '');
+          return n.name + (pv ? '\n' + compactTHB(pv) + ' (' + share + ')' : '');
+        }
+      },
+      leaves: {
+        label: {
+          position: 'top',
+          align: 'center',
+          verticalAlign: 'middle',
+          rotate: 'radial',
+          distance: 12
         }
       },
       emphasis: { focus: 'descendant' }
@@ -139,7 +154,7 @@ function updateSummaryCards(root){
 function applyData(data){
   originalData = sanitize(data);
   stack.length = 0;
-  render(originalData, [originalData.name]);
+  render(originalData, [originalData.name], 1);
   updateSummaryCards(originalData);
 }
 
@@ -158,9 +173,11 @@ function updateDetails(node, pathArr, total, parentTotal){
   document.getElementById('exportNodeNotes').onclick = () => exportNotes(pathStr);
 }
 
-function drillTo(node, nextPathArr){
-  stack.push({ root: currentRoot, path: currentPath });
-  render(node, nextPathArr);
+function drillTo(node, nextPathArr, depthOverride = null){
+  if (node === currentRoot) return;
+  stack.push({ root: currentRoot, path: currentPath.slice(), depth: currentDepth });
+  const depth = depthOverride != null ? depthOverride : -1;
+  render(node, nextPathArr, depth);
 }
 
 chart.on('click', function (params) {
@@ -172,17 +189,17 @@ chart.on('click', function (params) {
   const pathArr = (params.treePathInfo || []).map(x => x.name);
   updateDetails(node, pathArr, computeTotal(node), parentTotal);
   if (node && node.children && node.children.length){
-    drillTo(node, pathArr);
+    drillTo(node, pathArr, -1);
   }
 });
 
 document.getElementById('backBtn').onclick = () => {
   if (!stack.length) return;
   const prev = stack.pop();
-  render(prev.root, prev.path);
+  render(prev.root, prev.path, prev.depth);
 };
 document.getElementById('resetBtn').onclick = () => {
-  if (originalData){ stack.length = 0; render(originalData, [originalData.name]); }
+  if (originalData){ stack.length = 0; render(originalData, [originalData.name], 1); }
 };
 document.getElementById('dlPngBtn').onclick = () => {
   const url = chart.getDataURL({ pixelRatio: 2, backgroundColor: '#0f172a' });
@@ -204,6 +221,15 @@ const HTML_ESCAPES = {
 function escapeHtml(s){
   return String(s ?? '').replace(/[&<>"']/g, m => HTML_ESCAPES[m]);
 }
+function formatNoteWords(text){
+  const words = String(text || '')
+    .split(/\s+/)
+    .map(w => w.trim())
+    .filter(Boolean);
+  if (!words.length) return '<span class="note-word">—</span>';
+  return words.map(word => `<span class="note-word">${escapeHtml(word)}</span>`).join('');
+}
+
 function loadNotes(pathStr){
   const el = document.getElementById('notesList');
   el.innerHTML = '';
@@ -216,7 +242,7 @@ function loadNotes(pathStr){
   for (const n of notes){
     const div = document.createElement('div');
     div.className = 'note';
-    div.innerHTML = `${escapeHtml(n.text)}<time>${new Date(n.ts).toLocaleString()}</time>`;
+    div.innerHTML = `<div class="note-words">${formatNoteWords(n.text)}</div><time>${new Date(n.ts).toLocaleString()}</time>`;
     el.appendChild(div);
   }
 }
