@@ -28,6 +28,11 @@ const compactTHB = (value) =>
 const pct = (value, total) =>
   total && value != null ? ((value / total) * 100).toFixed(2) + '%' : '—';
 
+function formatTitle(name) {
+  if (!name) return 'Thailand Budget';
+  return name.replace(/\s*\(/, '\n(');
+}
+
 function sanitize(node) {
   const copy = { ...node };
   copy.value = node.value == null || node.value === '' ? null : Number(node.value);
@@ -264,7 +269,8 @@ function renderChildren(node) {
     return;
   }
   const parentTotal = totalFor(node);
-  for (const child of node.children) {
+  const sortedChildren = [...node.children].sort((a, b) => totalFor(b) - totalFor(a));
+  for (const child of sortedChildren) {
     const item = document.createElement('li');
     const name = document.createElement('span');
     name.className = 'name';
@@ -281,6 +287,25 @@ function renderChildren(node) {
   }
 }
 
+function updateCenterBadge(node, parent) {
+  if (!node) return;
+  const total = totalFor(node);
+  const parentTotal = parent ? totalFor(parent) : null;
+  if (els.centerTitle) {
+    els.centerTitle.textContent = formatTitle(node.name);
+  }
+  if (els.centerSubtitle) {
+    let subtitle = total != null
+      ? `Total allocation ${compactTHB(total)}`
+      : 'Total allocation not specified';
+    const share = pct(total, parentTotal);
+    if (parent && share !== '—') {
+      subtitle += ` · ${share} of parent`;
+    }
+    els.centerSubtitle.textContent = subtitle;
+  }
+}
+
 function showNodeDetails(node, path, parent) {
   if (!node) return;
   const total = totalFor(node);
@@ -293,6 +318,7 @@ function showNodeDetails(node, path, parent) {
     els.desc.textContent = node.desc ? node.desc : 'No additional description provided for this node.';
   }
   renderChildren(node);
+  updateCenterBadge(node, parent);
 }
 
 function applyData(data) {
@@ -300,13 +326,6 @@ function applyData(data) {
   updateSummary(dataset);
   renderChart(dataset);
   showNodeDetails(dataset, [dataset.name], null);
-  const total = totalFor(dataset);
-  if (els.centerTitle) els.centerTitle.textContent = dataset.name || 'Thailand Budget';
-  if (els.centerSubtitle) {
-    els.centerSubtitle.textContent = total != null
-      ? `Total allocation ${compactTHB(total)}`
-      : 'Tap a branch to explore details';
-  }
 }
 
 chart.on('click', (params) => {
